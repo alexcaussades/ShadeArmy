@@ -12,7 +12,7 @@ use ShadeLife\Players;
 $players = New Players();
 $players->regexPid();
 
-echo $players->getpid();
+//echo $players->getpid();
 ?>
 
 <link rel="stylesheet" href="<?= cssuri(); ?>index.css">

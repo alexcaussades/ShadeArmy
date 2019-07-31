@@ -2,14 +2,17 @@
 
 namespace ShadeLife;
 
+/**
+ * - Recupère les donners de table Players via le PID utilisateurs steam
+ * - Via la class Players 
+ */
 
 trait TPlayers
 
 {
 	public function GetPlayersPid($value = "pid")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -20,8 +23,8 @@ trait TPlayers
 
 	public function GetPlayersUid($value = "uid")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -32,8 +35,8 @@ trait TPlayers
 
 	public function GetPlayersName($value = "name")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -44,8 +47,8 @@ trait TPlayers
 
 	public function GetPlayersAliases($value = "aliases")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -56,8 +59,8 @@ trait TPlayers
 
 	public function GetPlayersCash($value = "cash")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -68,8 +71,8 @@ trait TPlayers
 
 	public function GetPlayersBankacc($value = "bankacc")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -80,8 +83,8 @@ trait TPlayers
 
 	public function GetPlayersCoplevel($value = "coplevel")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -92,8 +95,8 @@ trait TPlayers
 
 	public function GetPlayersMediclevel($value = "mediclevel")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -104,8 +107,8 @@ trait TPlayers
 
 	public function GetPlayersCiv_licenses($value = "civ_licenses")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -116,8 +119,8 @@ trait TPlayers
 
 	public function GetPlayersCop_licenses($value = "cop_licenses")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -128,8 +131,8 @@ trait TPlayers
 
 	public function GetPlayersMed_licenses($value = "med_licenses")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -140,8 +143,8 @@ trait TPlayers
 
 	public function GetPlayersCiv_gear($value = "civ_gear")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -152,8 +155,8 @@ trait TPlayers
 
 	public function GetPlayersCop_gear($value = "cop_gear")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -164,8 +167,8 @@ trait TPlayers
 
 	public function GetPlayersMed_gear($value = "med_gear")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -176,8 +179,8 @@ trait TPlayers
 
 	public function GetPlayersCiv_stats($value = "civ_stats")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -188,8 +191,8 @@ trait TPlayers
 
 	public function GetPlayersCop_stats($value = "cop_stats")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -200,8 +203,8 @@ trait TPlayers
 
 	public function GetPlayersMed_stats($value = "med_stats")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -212,8 +215,8 @@ trait TPlayers
 
 	public function GetPlayersArrested($value = "arrested")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -224,8 +227,8 @@ trait TPlayers
 
 	public function GetPlayersAdminlevel($value = "adminlevel")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -236,8 +239,8 @@ trait TPlayers
 
 	public function GetPlayersDonorlevel($value = "donorlevel")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -248,8 +251,8 @@ trait TPlayers
 
 	public function GetPlayersBlacklist($value = "blacklist")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -260,8 +263,8 @@ trait TPlayers
 
 	public function GetPlayersCiv_alive($value = "civ_alive")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -272,8 +275,8 @@ trait TPlayers
 
 	public function GetPlayersCiv_position($value = "civ_position")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -284,8 +287,8 @@ trait TPlayers
 
 	public function GetPlayersPlaytime($value = "playtime")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -296,8 +299,8 @@ trait TPlayers
 
 	public function GetPlayersLast_seen($value = "last_seen")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -308,8 +311,8 @@ trait TPlayers
 
 	public function GetPlayersBanking_pin($value = "banking_pin")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -320,8 +323,8 @@ trait TPlayers
 
 	public function GetPlayersPointspermis($value = "pointsPermis")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -332,8 +335,8 @@ trait TPlayers
 
 	public function GetPlayersAnnuaire($value = "annuaire")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -344,8 +347,8 @@ trait TPlayers
 
 	public function GetPlayersSms($value = "sms")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -356,8 +359,8 @@ trait TPlayers
 
 	public function GetPlayersAppel($value = "appel")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -368,8 +371,8 @@ trait TPlayers
 
 	public function GetPlayersNum($value = "num")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -380,8 +383,8 @@ trait TPlayers
 
 	public function GetPlayersContact($value = "contact")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -392,8 +395,8 @@ trait TPlayers
 
 	public function GetPlayersIscop($value = "IsCop")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -404,8 +407,8 @@ trait TPlayers
 
 	public function GetPlayersIsemt($value = "IsEMT")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -416,8 +419,8 @@ trait TPlayers
 
 	public function GetPlayersIsadac($value = "IsAdac")
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		
+		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
