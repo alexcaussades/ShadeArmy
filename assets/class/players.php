@@ -2,11 +2,10 @@
 
 namespace ShadeLife;
 
-
 require 'trait/trait_player.php';
 require 'bdd.php';
 
-class Players
+class Players 
 {
 
 use TPlayers;
@@ -30,7 +29,7 @@ public function __construct()
 
 public function regexPid()
 {
-$_GET['pid'] = "7656141514";
+$_GET['pid'] = "76561198124270648";
 	if(isset($_GET["pid"]))
 	{
 		$_GET['pid'] = htmlspecialchars(trim($_GET['pid']));
@@ -86,10 +85,23 @@ public function getInfo()
 		$q->closeCursor();
 }
 
-public static function countPlayers(){
-	$sql = DB::get()->query('SELECT COUNT(uid) FROM players');
+public function countPlayers(){
+	global $bdd;
+	$sql = $bdd->query('SELECT COUNT(uid) FROM players');
 	$fetch = $sql->fetch();
 	return $fetch['COUNT(uid)'];
 }
+
+public function GetPlayersUid($value = "uid")
+	{
+		global $bdd;
+		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		$q->execute(array('pid'=> $this->pid));
+			while ($r = $q->fetch())
+			{
+				echo $r[$value];
+			}
+		$q->closeCursor();
+	}
 
 }

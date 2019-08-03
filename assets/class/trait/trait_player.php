@@ -7,6 +7,8 @@ namespace ShadeLife;
  * - Via la class Players 
  */
 
+//require '../bdd.php';
+
 trait TPlayers
 
 {
@@ -21,22 +23,22 @@ trait TPlayers
 		$q->closeCursor();
 	}
 
-	public function GetPlayersUid($value = "uid")
-	{
+	// public function GetPlayersUid($value = "uid")
+	// {
 		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
-	}
+	// 	$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
+	// 	$q->execute(array('pid'=> $this->pid));
+	// 		while ($r = $q->fetch())
+	// 		{
+	// 			echo $r[$value];
+	// 		}
+	// 	$q->closeCursor();
+	// }
 
 	public function GetPlayersName($value = "name")
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
+		global $bdd;
+		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -48,7 +50,8 @@ trait TPlayers
 	public function GetPlayersAliases($value = "aliases")
 	{
 		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
+		global $bdd;
+		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{
@@ -60,7 +63,8 @@ trait TPlayers
 	public function GetPlayersCash($value = "cash")
 	{
 		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
+		global $bdd;
+		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 			while ($r = $q->fetch())
 			{

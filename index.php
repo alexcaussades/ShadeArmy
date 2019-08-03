@@ -1,19 +1,24 @@
 <?php 
 session_start();
+
 /**
  * Importation des functions et des class 
  */
+
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
+require 'assets/class/bdd.php';
 require 'assets/class/players.php';
 
+//require 'assets/class/bluefort.php';
 use ShadeLife\Players;
+// use ShadeLife\BlueFort;
 
-$players = New Players();
-$players->regexPid();
-
-//echo $players->getpid();
+ $players = New Players();
+ $players->regexPid();
+//echo $players->countPlayers();
 ?>
+
 
 <link rel="stylesheet" href="<?= cssuri(); ?>index.css">
 <div class="alert alert-danger" role="alert">
@@ -66,7 +71,13 @@ if (isset($_POST['login']) && isset($_POST['passworld']))
 ?>
 
 
+<h2>Essais de con BDD: </h2>
 
+UID : <?= $players->GetPlayersUid(); ?>
+<br>
+Name : <?= $players->GetPlayersName(); ?>
+<br>
+Cash Player: <?= $players->GetPlayersCash(); ?>
 <footer>
 <?php require 'footer.php'; ?>
 </footer>
