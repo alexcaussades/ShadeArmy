@@ -7,16 +7,8 @@ session_start();
 
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
-require 'assets/class/bdd.php';
-require 'assets/class/players.php';
 
-//require 'assets/class/bluefort.php';
-use ShadeLife\Players;
-// use ShadeLife\BlueFort;
 
- $players = New Players();
- $players->regexPid();
-//echo $players->countPlayers();
 ?>
 
 
@@ -27,7 +19,7 @@ use ShadeLife\Players;
 
 
 <div class="d-flex justify-content-center">
-  <img class="logogend" src="<?= imguri(); ?>langfr-1024px-Gendarmerie_nationale_logo.png" alt="" title="A remplacer avec le nouveau logo">
+  <img class="logogend" src="<?= imguri(); ?>LogoGouv.png" alt="" title="A remplacer avec le nouveau logo">
 </div>
 
 
@@ -71,13 +63,25 @@ if (isset($_POST['login']) && isset($_POST['passworld']))
 ?>
 
 
-<h2>Essais de con BDD: </h2>
+<?php
 
-UID : <?= $players->GetPlayersUid(); ?>
-<br>
-Name : <?= $players->GetPlayersName(); ?>
-<br>
-Cash Player: <?= $players->GetPlayersCash(); ?>
+$prod = null;
+
+if($prod == true)
+{
+?>
+<form name="pid" action="sr.php" method="get">
+<input type="text" class="form-control" name="pid" placeholder="PID players">
+<button type="submit" class="float-right btn btn-success mb-2"><i class="fas fa-fingerprint"></i> Identification</button>
+</form>
+<?php
+}
+
+?>
+
+
+
+
 <footer>
 <?php require 'footer.php'; ?>
 </footer>

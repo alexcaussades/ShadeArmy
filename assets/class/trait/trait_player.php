@@ -12,15 +12,9 @@ namespace ShadeLife;
 trait TPlayers
 
 {
-	public function GetPlayersPid($value = "pid")
+	public function GetPlayersPid()
 	{
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->pid;
 	}
 
 	// public function GetPlayersUid($value = "uid")
@@ -35,126 +29,54 @@ trait TPlayers
 	// 	$q->closeCursor();
 	// }
 
-	public function GetPlayersName($value = "name")
+	public function GetPlayersName()
 	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->name;
 	}
 
-	public function GetPlayersAliases($value = "aliases")
+	public function GetPlayersAliases()
 	{
-		
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->aliases;
 	}
 
-	public function GetPlayersCash($value = "cash")
+	public function GetPlayersCash()
 	{
-		
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->cash;
 	}
 
-	public function GetPlayersBankacc($value = "bankacc")
+	public function GetPlayersBankacc()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->bankacc;
 	}
 
-	public function GetPlayersCoplevel($value = "coplevel")
+	public function GetPlayersCoplevel()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->coplevel;
 	}
 
-	public function GetPlayersMediclevel($value = "mediclevel")
+	public function GetPlayersMediclevel()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->mediclevel;
 	}
 
-	public function GetPlayersCiv_licenses($value = "civ_licenses")
+	public function GetPlayersCiv_licenses()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->civ_licenses;
 	}
 
-	public function GetPlayersCop_licenses($value = "cop_licenses")
+	public function GetPlayersCop_licenses()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->cop_licenses;
 	}
 
-	public function GetPlayersMed_licenses($value = "med_licenses")
+	public function GetPlayersMed_licenses()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->med_licenses;
 	}
 
-	public function GetPlayersCiv_gear($value = "civ_gear")
+	public function GetPlayersCiv_gear()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->civ_gear;
 	}
 
 	public function GetPlayersCop_gear($value = "cop_gear")
@@ -373,16 +295,9 @@ trait TPlayers
 		$q->closeCursor();
 	}
 
-	public function GetPlayersNum($value = "num")
+	public function GetPlayersNum()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->num;
 	}
 
 	public function GetPlayersContact($value = "contact")

@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="fr">
   <head>
-    <title>ShadeArmy: Pannel Gendarmerie </title>
+    <title>ShadeArmy: Pannel Gouvernemental </title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">

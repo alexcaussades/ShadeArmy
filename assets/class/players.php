@@ -27,9 +27,9 @@ public function __construct()
  * @param regex 7656
  */
 
+
 public function regexPid()
 {
-$_GET['pid'] = "76561198124270648";
 	if(isset($_GET["pid"]))
 	{
 		$_GET['pid'] = htmlspecialchars(trim($_GET['pid']));
@@ -54,33 +54,36 @@ public function getpid()
 
 public function getInfo()
 {
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
+		global $bdd;
+		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
 		$q->execute(array('pid'=> $this->pid));
 
 			while ($r = $q->fetch())
 			{	$infosArray = array(
-				$r['uid'] => $this->uid,
-				$r['name'] => $this->name,
-				//$r['pid'] => $this->pid,
-				$r['cash'] => $this->cash,
-				$r['bankacc'] => $this->bankacc,
-				$r['coplevel'] => $this->coplevel,
-				$r['cop_licenses'] => $this->cop_licenses,
-				$r['civ_licenses'] => $this->civ_licenses,
-				$r['med_licenses'] => $this->med_licenses,
-				$r['cop_gear'] => $this->cop_gear,
-				$r['med_gear'] => $this->med_gear,
-				$r['mediclevel'] => $this->mediclevel,
-				$r['arrested'] => $this->arrested,
-				$r['aliases'] => $this->aliases,
-				$r['adminlevel'] => $this->adminlevel,
-				$r['donatorlvl'] => $this->donatorlvl,
-				$r['civ_gear'] => $this->civ_gear,
-				$r['blacklist'] => $this->blacklist,
-				$r['sponsor'] => $this->sponsor,
-				$r['credit'] => $this->credit
+				$this->uid = $r['uid'],
+				$this->name = $r['name'],
+				$this->cash = $r['cash'],
+				$this->bankacc = $r['bankacc'], 
+				$this->coplevel = $r['coplevel'],
+				$this->cop_licenses = $r['cop_licenses'],
+				$this->civ_licenses = $r['civ_licenses'], 
+				$this->med_licenses = $r['med_licenses'],
+				$this->cop_gear = $r['cop_gear'],
+				$this->med_gear = $r['med_gear'],
+				$this->mediclevel = $r['mediclevel'], 
+				$this->arrested = $r['arrested'],
+				$this->aliases = $r['aliases'],
+				$this->adminlevel = $r['adminlevel'],
+				$this->donatorlvl = $r['donatorlvl'],
+				$this->civ_gear = $r['civ_gear'],
+				$this->blacklist = $r['blacklist'], 
+				$this->sponsor = $r['sponsor'],
+				$this->credit = $r['credit'],
+				$this->lastseen = $r['last_seen'],
+				$this->pointsPermis = $r['pointsPermis'],
+				$this->num = $r['num'],
 			);
-			return $infosArray;
+			
 	}
 		$q->closeCursor();
 }
@@ -92,16 +95,7 @@ public function countPlayers(){
 	return $fetch['COUNT(uid)'];
 }
 
-public function GetPlayersUid($value = "uid")
-	{
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
-	}
+
+
 
 }

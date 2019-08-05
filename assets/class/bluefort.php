@@ -7,7 +7,7 @@ namespace ShadeLife;
  */
 
 
-class BlueFort 
+class BlueFort extends Players
 {
 
 
