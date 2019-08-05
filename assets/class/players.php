@@ -2,6 +2,8 @@
 
 namespace ShadeLife;
 
+use PDO;
+
 require 'trait/trait_player.php';
 require 'bdd.php';
 
@@ -10,7 +12,7 @@ class Players
 
 use TPlayers;
 
-public $pid;
+//public $pid;
 
 public function __construct()
 {
@@ -96,6 +98,51 @@ public function countPlayers(){
 }
 
 
+public function form()
+{
+	?>
+	<div class="formgnd d-flex justify-content-center">
+  	<form name="pid" action="#" method="get">
+    <div class="col-auto">
+      <label class="sr-only" for="inlineFormInput">PID</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="far fa-id-card"></i></div>
+              </div>
+                <input type="text" class="form-control" name="pid" id="inlineFormInputGroup" placeholder="PID">
+                </div>
+				</div>
+        </div>
+      <div class="col-auto">
+            <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Recherche</button>
+        </div>
+    
+  </form>
+</div>
+	<?php
+}
 
+public function users()
+{
+	?>
+	<div class="container">
+        <table class="table table-hover">
+        <tr>
+        <th scope="col">Pseudo: </th>
+		</tr>
+		<?php
+	global $bdd;
+	$q = $bdd->query('SELECT * FROM players');
+	$r = $q->fetchAll(PDO::FETCH_OBJ);
+	{
+		foreach($r as $t):?>
+		<tr>
+		<th><a href="./rep.php?pid=<?= htmlentities(trim($t->pid)); ?>"><?= htmlentities(trim($t->name)); ?></a></th>
+		<td><?php echo htmlentities(trim($t->discord)); ?></td>
+		</tr>
+		<?php endforeach ?>
+        <?php       
+	}
+}
 
 }

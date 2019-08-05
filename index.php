@@ -7,7 +7,8 @@ session_start();
 
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
-
+require 'assets/class/ident.php';
+ use ShadeLife\ident;
 
 ?>
 
@@ -39,7 +40,7 @@ require 'assets/auto/function.php';
                 <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fas fa-key"></i></div>
                 </div>
-                <input type="text" class="form-control" name="passworld" id="inlineFormInputGroup" placeholder="Mot de passe">
+                <input type="password" class="form-control" name="passworld" id="inlineFormInputGroup" placeholder="Password">
           </div>
         </div>
       <div class="col-auto">
@@ -52,13 +53,8 @@ require 'assets/auto/function.php';
 <?php 
 if (isset($_POST['login']) && isset($_POST['passworld']))
 {
- ?>
-    <div class="d-flex justify-content-center">
-      <div class="alert alert-warning" role="alert">
-        Identification Impossible en cour de creation revenez plus tard ! 
-      </div>
-    </div>
- <?php
+ $ident = new ident;
+ $ident->login();
 }
 ?>
 
