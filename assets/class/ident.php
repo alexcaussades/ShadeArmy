@@ -186,7 +186,7 @@ class ident
 						global $bdd;
 						$q = $bdd->prepare("INSERT INTO motif_users(id_auth, motif, date) VALUES(:id_auth, :motif, NOW())");
 						$q->execute(array("id_auth" => $idusers, "motif" => "changement du mot de passe fait par le formulaire"));
-
+						// mettre en function avec la class mail
 						$messagemail = "Voici votre nouveaux mot de passe : " .$newpass;
 						mail($email, "Modification de votre mot passe", $messagemail);
 					}
