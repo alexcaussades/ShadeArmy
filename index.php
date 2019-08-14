@@ -8,6 +8,7 @@ session_start();
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/ident.php';
+require 'assets/class/define.php';
  use ShadeLife\ident;
 
 ?>
@@ -15,9 +16,9 @@ require 'assets/class/ident.php';
 
 <link rel="stylesheet" href="<?= cssuri(); ?>index.css">
 <div class="alert alert-danger" role="alert">
- En cour de création ! contacter un administrateur !
+ En cour de création ! <a href="mailto:<?= MAILDEV; ?>">contacter un administrateur</a> !
+ La création du compte et la modification du mot de passe sont opérationnelles | En phase Alpha actuellement ! 
 </div>
-
 
 <div class="d-flex justify-content-center">
   <img class="logogend" src="<?= imguri(); ?>LogoGouv.png" alt="" title="A remplacer avec le nouveau logo">
@@ -34,7 +35,7 @@ require 'assets/class/ident.php';
               </div>
                 <input type="text" class="form-control" name="login" id="inlineFormInputGroup" placeholder="Username">
                 </div>
-                <br />
+                
                 <label class="sr-only" for="inlineFormInput">passworld</label>
                 <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -44,10 +45,14 @@ require 'assets/class/ident.php';
           </div>
         </div>
       <div class="col-auto">
-            <button type="submit" class="float-right btn btn-success mb-2"><i class="fas fa-fingerprint"></i> Identification</button>
+            <button type="submit" class="btn btn-success mb-2"><i class="fas fa-fingerprint"></i> Identification</button>
         </div>
-    
-  </form>
+    </form>
+</div>
+<div class="d-flex justify-content-center">
+<a href="register.php"><button type="submit" class="btn btn-info mb-2"><i class="fas fa-plus-square"></i> Creat Account</button></a>&nbsp;
+<a href="systeme.php?action=resetpass"><button type="submit" class="btn btn-danger mb-2"><i class="fas fa-retweet"></i> New Password</button></a>
+
 </div>
 
 <?php 
@@ -74,9 +79,6 @@ if($prod == true)
 }
 
 ?>
-
-
-
 
 <footer>
 <?php require 'footer.php'; ?>

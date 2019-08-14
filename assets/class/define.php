@@ -12,7 +12,17 @@ define("SERVEUR", "");
 define("PORT", "");
 
 
+//mail
+define("MAIL", "nepasrepondre@shadearmy.fr");
+define("MAILDEV", "alexcaussades@gmail.com");
+
 //table
 
 define("PLAYERS", "players");
+
+//Application
+
+define("VERSION", "Alpha");
+define("NUMEROS_DE_VERSION", "0.8 A");
+define("TYPE", "Devs");
 

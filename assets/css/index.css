@@ -10,5 +10,9 @@ body {
 }
 
 .formgnd {
-  margin: 50px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
+}
+
+.version {
+	margin-right: 15px;
 }
