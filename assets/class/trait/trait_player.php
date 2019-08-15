@@ -46,7 +46,9 @@ trait TPlayers
 
 	public function GetPlayersBankacc()
 	{
-		return $this->bankacc;
+		setlocale(LC_MONETARY, 'en_US');
+		$money = money_format('%(#10n', $this->bankacc);
+		return $money;
 	}
 
 	public function GetPlayersCoplevel()
@@ -79,16 +81,9 @@ trait TPlayers
 		return $this->civ_gear;
 	}
 
-	public function GetPlayersCop_gear($value = "cop_gear")
+	public function GetPlayersCop_gear()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->cop_gear;
 	}
 
 	public function GetPlayersMed_gear($value = "med_gear")
@@ -139,16 +134,9 @@ trait TPlayers
 		$q->closeCursor();
 	}
 
-	public function GetPlayersArrested($value = "arrested")
+	public function GetPlayersArrested()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->arrested;
 	}
 
 	public function GetPlayersAdminlevel($value = "adminlevel")
@@ -223,16 +211,9 @@ trait TPlayers
 		$q->closeCursor();
 	}
 
-	public function GetPlayersLast_seen($value = "last_seen")
+	public function GetPlayersLast_seen()
 	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+		return $this->lastseen;
 	}
 
 	public function GetPlayersBanking_pin($value = "banking_pin")
@@ -247,16 +228,9 @@ trait TPlayers
 		$q->closeCursor();
 	}
 
-	public function GetPlayersPointspermis($value = "pointsPermis")
-	{
-		
-		$q = DB::get()->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array('pid'=> $this->pid));
-			while ($r = $q->fetch())
-			{
-				echo $r[$value];
-			}
-		$q->closeCursor();
+	public function GetPlayersPointspermis()
+	{		
+		return $this->pointsPermis;
 	}
 
 	public function GetPlayersAnnuaire($value = "annuaire")

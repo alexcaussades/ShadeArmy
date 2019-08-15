@@ -2,3 +2,48 @@
 .grade{
 	margin-top: 30px;
 }
+
+.recherche{
+	color: whitesmoke;
+	font-size: 48px;
+	height: 4em; /* hauteur du parent */
+	line-height: 4em; /* hauteur de ligne (identique) */
+	white-space: nowrap; /* interdiction de passer à la ligne */
+}
+
+.bandeau{
+	background-color: #004373;	
+}
+
+.ineterpol {
+	margin-top: 30px;
+}
+
+.info {
+	max-width: 95%;
+	margin: 0px, 0px, 0px , -150px;
+}
+
+.tableaux{
+	max-width: 50%;
+}
+
+.avatar {
+	margin-top: 0px;
+	margin-left: 20px;
+	
+}
+
+.nationalite{
+	color: whitesmoke;
+	margin-top: -60px;
+	font-size: 19px;
+}
+
+.identt{
+	margin-top: 0px;
+}
+
+.segonde{
+	margin-top: 15px;
+}

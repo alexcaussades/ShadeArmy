@@ -4,6 +4,8 @@ body {
 	
 }
 
+footer {position: absolute; bottom: 0;}
+
 .logogend{
 	width: 25%;
     height: 25%;

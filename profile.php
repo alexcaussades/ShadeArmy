@@ -60,7 +60,6 @@ function action()
 		global $bdd;
 		$q = $bdd->prepare("SELECT id, motif, date FROM motif_users WHERE :id_auth ORDER BY id DESC LIMIT 0, 10");
 		$q->execute(array(":id_auth" => $id));
-		//var_dump($q);
 			while($t = $q->fetch())
 			{
 				?>

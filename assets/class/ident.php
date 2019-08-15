@@ -2,6 +2,8 @@
 
 namespace ShadeLife;
 
+use function Sodium\bin2hex;
+
 require 'bdd.php';
 
 /**
@@ -140,6 +142,14 @@ class ident
 				var_dump($q);
 	}
 
+	/**
+	 * resetmdp
+	 * - redonne un mdp via le formulaire externe
+	 * - recherche via Email 
+	 * - confirmation du retour vers boite email users 
+	 * - set des parametres utilisateur dans Table motif_users! 
+	 *
+	 */
 	public function resetmdp()
 	{
 		if(isset($_POST["email"]) && !empty($_POST['email']))
@@ -193,4 +203,70 @@ class ident
 				}
 			}
 	}
-}
+
+
+	/**
+	 * setToken
+	 *
+	 * - création d'un token de securité 
+	 */
+	public function setToken()
+	{
+		$token = random_bytes(32);
+		$token = bin2hex($token);
+		echo $token;
+		setcookie( "TestCookie", $token, strtotime( '+5 minute' ) );
+	}
+
+	
+	/**
+	 * getCookie
+	 *
+	 * - Verification du cookie avec recherche bdd + insertion de la derniere connection datetime() lastseen
+	 * - Set session login / pid / coplvl
+	 * - Redirige vers rep.php 
+	 * 
+	 */
+	public function getCookie()
+	{
+		if(isset($_COOKIE['login']) && isset($_COOKIE['pid']))
+			{
+			$loginusers = $_COOKIE['login'];
+			$pid = $_COOKIE['pid'];
+			global $bdd;
+			$q = $bdd->prepare("SELECT * FROM auth WHERE login = :login AND pid = :pid");
+				$q->execute(array(':login' => $loginusers, ':pid' => $pid));
+			$logged = $q->fetch();
+			if(!$logged)
+			{
+			
+			}else {
+				global $bdd;
+				$q = $bdd->prepare("UPDATE auth SET lastseen = NOW() WHERE login = :login");
+				$q->bindValue(":login", $loginusers);
+				$q->execute();
+				session_start();
+				$_SESSION['name'] = $logged['login'];
+				$_SESSION['pid'] = $logged['pid'];
+				global $bdd;
+				$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+				$q->execute(array(':pid' => $_SESSION['pid']));
+				while ($r = $q->fetch())
+				{
+				$_SESSION['coplevel'] = $r['coplevel'];
+				?>
+				<script>
+					window.location.replace("rep.php");
+				</script>
+				<?php
+				}
+			}
+		}
+	}
+
+
+
+
+
+	
+} //fin de class

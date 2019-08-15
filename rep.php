@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+setcookie( "login", $_SESSION['name'], strtotime( '+59 minute' ),"/", true, true );
+setcookie( "pid", $_SESSION['pid'], strtotime( '+59 minute' ),"/", true, true  );
 
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
@@ -42,7 +44,7 @@ if(!isset($_SESSION['name']))
 			information importante :
 		</p>
 		<a href="./profile.php" class="btn btn-primary"><i class="fas fa-tools"></i> My Profile</a>
-		<a href="./logout.php" class="btn btn-primary">Disconnect</a>		
+		<a href="systeme.php?action=logout" class="btn btn-primary">Disconnect</a>		
       </div>
     </div>
   </div>

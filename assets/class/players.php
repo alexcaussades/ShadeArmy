@@ -98,51 +98,63 @@ public function countPlayers(){
 }
 
 
-public function form()
+
+
+public function advance_identity()
 {
-	?>
-	<div class="formgnd d-flex justify-content-center">
-  	<form name="pid" action="#" method="get">
-    <div class="col-auto">
-      <label class="sr-only" for="inlineFormInput">PID</label>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text"><i class="far fa-id-card"></i></div>
-              </div>
-                <input type="text" class="form-control" name="pid" id="inlineFormInputGroup" placeholder="PID">
-                </div>
-				</div>
-        </div>
-      <div class="col-auto">
-            <button type="submit" class="btn btn-success"><i class="fas fa-search"></i> Recherche</button>
-        </div>
-    
-  </form>
-</div>
-	<?php
+	global $bdd;
+		$q = $bdd->prepare("SELECT * FROM advanced_identity WHERE pid = :pid");
+		$q->execute(array('pid'=> $this->pid));
+		while ($r = $q->fetch())
+			{	$infosArray = array(
+				$this->datenaissance = $r['naissance'],
+				$this->lieudenaissance = $r['lieu_naissance'],
+				$this->taille = $r["taille"],
+				$this->sexe = $r["sexe"],
+			);
+		}
+		$q->closeCursor();
+} 
+
+public function getPlayersLieuNaiss()
+{
+	$a = $this->lieudenaissance;
+	echo str_replace('"', '', $a);
 }
 
-public function users()
+public function getPlayersNaiss()
 {
-	?>
-	<div class="container">
-        <table class="table table-hover">
-        <tr>
-        <th scope="col">Pseudo: </th>
-		</tr>
-		<?php
+	$a = $this->datenaissance;
+	$a = str_replace('"', '', $a);
+	$a = str_replace(']', '', $a);
+	echo str_replace('[', '', $a);
+}
+
+public function getPlayerstaille()
+{
+	return $this->taille;
+}
+
+public function getplayersHouse()
+{
 	global $bdd;
-	$q = $bdd->query('SELECT * FROM players');
-	$r = $q->fetchAll(PDO::FETCH_OBJ);
-	{
-		foreach($r as $t):?>
-		<tr>
-		<th><a href="./rep.php?pid=<?= htmlentities(trim($t->pid)); ?>"><?= htmlentities(trim($t->name)); ?></a></th>
-		<td><?php echo htmlentities(trim($t->discord)); ?></td>
-		</tr>
-		<?php endforeach ?>
-        <?php       
-	}
+		$q = $bdd->query("SELECT COUNT(*) AS pid FROM houses WHERE pid = ".$this->pid."")->fetchColumn();
+		return $q;
+		
+}
+
+public function getplayersContanier()
+{
+	global $bdd;
+		$q = $bdd->query("SELECT COUNT(*) AS pid FROM containers WHERE pid = ".$this->pid."")->fetchColumn();
+		return $q;
+}
+
+public function GetPlayersFromFacture()
+{
+	global $bdd;
+		$q = $bdd->query("SELECT COUNT(*) AS from_pid FROM factures WHERE pid = ".$this->pid."")->fetchColumn();
+		return $q;
 }
 
 }

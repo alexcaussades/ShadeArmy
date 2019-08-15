@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 /**
  * Importation des functions et des class 
  */
@@ -9,7 +8,12 @@ require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/ident.php';
 require 'assets/class/define.php';
- use ShadeLife\ident;
+use ShadeLife\ident;
+
+$ident = new ident;
+
+//$ident->getCookie();
+
 
 ?>
 
@@ -17,7 +21,8 @@ require 'assets/class/define.php';
 <link rel="stylesheet" href="<?= cssuri(); ?>index.css">
 <div class="alert alert-danger" role="alert">
  En cour de création ! <a href="mailto:<?= MAILDEV; ?>">contacter un administrateur</a> !
- La création du compte et la modification du mot de passe sont opérationnelles | En phase Alpha actuellement ! 
+ La création du compte et la modification du mot de passe sont opérationnelles | En phase Alpha actuellement !
+ <li> Une récriture des envoie d'e-mail est actuellement en cours </li> 
 </div>
 
 <div class="d-flex justify-content-center">
@@ -58,20 +63,22 @@ require 'assets/class/define.php';
 <?php 
 if (isset($_POST['login']) && isset($_POST['passworld']))
 {
- $ident = new ident;
- $ident->login();
+  $ident->login();
 }
 ?>
 
 
+
+
+
 <?php
 
-$prod = null;
+$prod = false;
 
 if($prod == true)
 {
 ?>
-<form name="pid" action="sr.php" method="get">
+<form name="pid" action="search.php" method="get">
 <input type="text" class="form-control" name="pid" placeholder="PID players">
 <button type="submit" class="float-right btn btn-success mb-2"><i class="fas fa-fingerprint"></i> Identification</button>
 </form>

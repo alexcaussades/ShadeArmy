@@ -34,8 +34,25 @@ if(!empty($_GET['action']) && $_GET["action"] === "resetpass")
 <a href="./index.php"><button type="submit" class="btn btn-danger mb-2">Retourner au pannel !</button></a>
 </div>
   <?php
-  //$_POST["email"] = "alexcaussades@gmail.com";
+
  echo $ident->resetmdp();
 }
 
+
+if(!empty($_GET['action']) && $_GET["action"] === "logout")
+{
+  session_destroy();
+  
+  setcookie('login', '', time() - 3600);
+  unset($_COOKIE['login']);
+  setcookie('pid', '', time() - 3600);
+  unset($_COOKIE['pid']);
+  ?>
+  <meta http-equiv="refresh" content="5 ; url= index.php">
+  <div class="alert alert-info" role="alert">
+  <strong>redirection en cour veuillez patienter... </strong>
+  </div>
+  <?php
+  exit();
+}
 ?>
