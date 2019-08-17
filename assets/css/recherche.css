@@ -11,6 +11,14 @@
 	white-space: nowrap; /* interdiction de passer à la ligne */
 }
 
+.recherche1{
+	color: whitesmoke;
+	font-size: 32px;
+	height: 4em; /* hauteur du parent */
+	line-height: 4em; /* hauteur de ligne (identique) */
+	white-space: nowrap; /* interdiction de passer à la ligne */
+}
+
 .bandeau{
 	background-color: #004373;	
 }

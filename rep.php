@@ -63,9 +63,18 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-3">
     <div class="card">
       <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-bullhorn"></i> Rapport <span class="badge badge-secondary">New</span></h5>
+        <p class="card-text"></p>
+        <a href="./rapport.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
         <h5 class="card-title"><i class="fas fa-bullhorn"></i> Avis <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
-        <a href="#" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
       </div>
     </div>
   </div>
@@ -74,7 +83,7 @@ if(!isset($_SESSION['name']))
       <div class="card-body">
         <h5 class="card-title"><i class="fas fa-clipboard"></i> Les Amemdes <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
-        <a href="#" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
       </div>
     </div>
   </div>
@@ -82,6 +91,11 @@ if(!isset($_SESSION['name']))
 <br>
 
 <br>
+<?php
+if($_SESSION['coplevel'] > 9)
+	{	
+  ?>
+<!-- Service administration  -->
 <h3>Administration :</h3>
 	<div class="container row">
   <div class="col-sm-3">
@@ -96,9 +110,18 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-3">
     <div class="card">
       <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-plus-circle"></i> Rapport intervention adm <span class="badge badge-secondary">New</span></h5>
+        <p class="card-text"></p>
+        <a href="intervention.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
         <h5 class="card-title"><i class="fas fa-plus-circle"></i> AddUser <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
-        <a href="#" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
       </div>
     </div>
   </div>
@@ -107,7 +130,7 @@ if(!isset($_SESSION['name']))
       <div class="card-body">
         <h5 class="card-title"><i class="fas fa-edit"></i></i>ModUser <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
-        <a href="#" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
       </div>
     </div>
   </div>
@@ -115,5 +138,6 @@ if(!isset($_SESSION['name']))
 
 	
 	<?php
+  }
 }
 ?>

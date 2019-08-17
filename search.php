@@ -1,4 +1,5 @@
 <?php 
+session_start();
 	require 'assets/class/bdd.php';
 	require 'assets/auto/header.php';
 	require 'assets/auto/function.php';
@@ -31,12 +32,32 @@
 ?>
 	
 	<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
+<?php
+if(!isset($_SESSION['name']))
+{
+	?>
+	<script>
+     	window.location.replace("index.php");
+    </script>
+	<?php
+}else
+{
+	?>
+	<div class="bandeau">
 
+<div class="container">
+<div class="row">
+	<div class="col-sm-4">
+		<img class="ineterpol" src="https://www.interpol.int/bundles/interpolfront/images/logo-blanc.png" alt="">
+	</div>
+		<div class="col-sm-8">
+		<p class="recherche1">Recherche de personnes :</p></p>
+		</div>
+</div>
+</div>
+</div>
+</div>
 
-	<div class="bandeau recherche ">
-	<div class="container">
-	Recherche de personnes :
-	</div></div>
 
 	<div class="info">
 		<div class="alert alert-info grade container" role="alert">
@@ -88,6 +109,6 @@
 	<?php
 	}
 
- ?>
-
  
+}
+ ?>

@@ -81,4 +81,56 @@ class BlueFort extends Players
 	}
 
 
+	public function GetPlayersCasier()
+	{
+		global $bdd;
+		$q = $bdd->query("SELECT COUNT(*) AS pid FROM casier_jud WHERE pid = ".$this->pid."")->fetchColumn();
+		if($q > 0)
+		{
+			echo $q;
+		}
+	}
+
+	public function GetplayersCasierView()
+	{
+		global $bdd;
+		$q = $bdd->query("SELECT COUNT(*) AS pid FROM casier_jud WHERE pid = ".$this->pid."")->fetchColumn();
+		if($q > 0)
+		{ ?>
+			<div class="container table-responsive-sm ">
+	
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+					<th scope="col">type</th>
+					<th scope="col">détail</th>
+					<th scope="col">Par</th>
+					<th scope="col">Date</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+			$q = $bdd->query("SELECT * FROM casier_jud WHERE pid = ".$this->pid."");
+			while ($r = $q->fetch())
+			{
+				?>
+				<tr>
+				<th scope="row"><?= htmlspecialchars($r['type']); ?></th>
+				<th scope="row"><?= htmlspecialchars($r['txt']); ?></th>
+				<th scope="row"><?= htmlspecialchars($r['name']); ?></th>
+				<th scope="row"><?= htmlspecialchars($r['date']); ?></th>
+				</tr>
+				<?php
+			}
+		}else
+		{
+			?>
+			<div class="info">
+			<div class="alert alert-info grade container" role="alert">
+			Casier Vierge
+			</div>
+			</div>
+			<?php
+		}
+	}
 }

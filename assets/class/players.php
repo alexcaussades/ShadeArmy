@@ -127,7 +127,8 @@ public function getPlayersNaiss()
 	$a = $this->datenaissance;
 	$a = str_replace('"', '', $a);
 	$a = str_replace(']', '', $a);
-	echo str_replace('[', '', $a);
+	$a = str_replace('[', '', $a);
+	echo str_replace(',', '-', $a);
 }
 
 public function getPlayerstaille()
@@ -153,8 +154,9 @@ public function getplayersContanier()
 public function GetPlayersFromFacture()
 {
 	global $bdd;
-		$q = $bdd->query("SELECT COUNT(*) AS from_pid FROM factures WHERE pid = ".$this->pid."")->fetchColumn();
+		$q = $bdd->query("SELECT COUNT(*) AS from_pid FROM factures WHERE from_pid = ".$this->pid."")->fetchColumn();
 		return $q;
 }
 
 }
+

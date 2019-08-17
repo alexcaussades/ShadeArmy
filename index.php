@@ -22,7 +22,8 @@ $ident = new ident;
 <div class="alert alert-danger" role="alert">
  En cour de création ! <a href="mailto:<?= MAILDEV; ?>">contacter un administrateur</a> !
  La création du compte et la modification du mot de passe sont opérationnelles | En phase Alpha actuellement !
- <li> Une récriture des envoie d'e-mail est actuellement en cours </li> 
+ <li> Une récriture des envoie d'e-mail est actuellement en cours </li>
+ <li> Création des rapports d'intervention </li> 
 </div>
 
 <div class="d-flex justify-content-center">
@@ -71,21 +72,7 @@ if (isset($_POST['login']) && isset($_POST['passworld']))
 
 
 
-<?php
 
-$prod = false;
-
-if($prod == true)
-{
-?>
-<form name="pid" action="search.php" method="get">
-<input type="text" class="form-control" name="pid" placeholder="PID players">
-<button type="submit" class="float-right btn btn-success mb-2"><i class="fas fa-fingerprint"></i> Identification</button>
-</form>
-<?php
-}
-
-?>
 
 <footer>
 <?php require 'footer.php'; ?>
