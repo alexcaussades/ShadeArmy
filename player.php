@@ -46,7 +46,7 @@ if(!isset($_SESSION['name']))
 		<img class="ineterpol" src="https://www.interpol.int/bundles/interpolfront/images/logo-blanc.png" alt="">
 	</div>
 		<div class="col-sm-8">
-		<p class="recherche"><?= $players->GetPlayersName(); ?></p></p>
+		<p class="recherche"><?= $players->GetPlayersName(); ?></p>
 		<p class="nationalite">Nationalité : <?= $players->getPlayersLieuNaiss(); ?></p>
 		</div>
 </div>
@@ -79,6 +79,7 @@ if(!isset($_SESSION['name']))
 	<nav class="navbar navbar-dark bg-dark">
   <button type="button" class="btn btn-dark">Imprimier</button> <br /><br />
   <a href="#addnote"><button type="button" class="btn btn-dark">Judiciaire <span class="badge badge-light"><?= $bluefort->GetPlayersCasier(); ?></span></button></a> <br />
+  <a href="wanted.php?pid=<?= htmlspecialchars($players->getpid());?>"><button type="button" class="btn btn-danger">Wanted</button></a></th>
 	</nav>
 
 				

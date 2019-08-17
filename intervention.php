@@ -28,7 +28,7 @@ if(!isset($_SESSION['name']))
 			<img class="ineterpol" src="https://www.interpol.int/bundles/interpolfront/images/logo-blanc.png" alt="">
 			</div>
 			<div class="col-sm-8">
-			<p class="recherche">Rapport d'intervention (ADM) </p></p>
+			<p class="recherche">Rapport d'intervention (ADM) </p>
 			</div>
 			</div>
 			</div>
@@ -59,7 +59,7 @@ if(!isset($_SESSION['name']))
 				<th scope="row"><?= htmlspecialchars($r['officier']); ?></th>
 				<th scope="row"><?= htmlspecialchars($r['dateinter']); ?></th>
 				<th scope="row"><?= htmlspecialchars($r['city']); ?></th>
-				<th scope="row"><a href="compterendu.php?id=<?= htmlspecialchars($r['id']); ?>"><button type="submit" class="btn btn-dark" disabled>Rapport</button></a></th>
+				<th scope="row"><a href="compterendu.php?id=<?= htmlspecialchars($r['id']); ?>"><button type="submit" class="btn btn-dark">Rapport</button></a></th>
 				</tr>
 				<?php
 			}

@@ -24,7 +24,10 @@ session_start();
         ?>   
 				<tr>
 				<th scope="row"><?= htmlspecialchars($r['name']); ?></th>
-				<th><a href="player.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-dark">Profile</button></a></th>
+				<th><a href="player.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-dark">Profile</button></a>
+				<a href="rapport.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-primary">Rapport</button></a>
+				<a href="wanted.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="submit" class="btn btn-danger">Wanted</button></a>
+				</th>
 				</tr>
 		<?php 
 	}
@@ -51,7 +54,7 @@ if(!isset($_SESSION['name']))
 		<img class="ineterpol" src="https://www.interpol.int/bundles/interpolfront/images/logo-blanc.png" alt="">
 	</div>
 		<div class="col-sm-8">
-		<p class="recherche1">Recherche de personnes :</p></p>
+		<p class="recherche1">Recherche de personnes :</p>
 		</div>
 </div>
 </div>

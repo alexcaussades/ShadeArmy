@@ -61,9 +61,7 @@ if(isset($_POST['option']) && isset($_POST['city']) && isset($_POST['gps']) && i
 			<div class="alert alert-info grade container" role="alert">
 			Votre rapport a bien etait enregister sous le numero: <?= $lastid; ?>
 			<br>
-			Une redirection automatique et en cours veuillez patienter !  
-			<br>
-			Une redirection automatique et en cours veuillez patienter ! 
+			Une redirection automatique et en cours veuillez patienter !   
 			</div>
 			</div>
 	<?php

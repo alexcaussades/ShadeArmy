@@ -37,7 +37,7 @@ if(!isset($_SESSION['name']))
 		<img class="ineterpol" src="https://www.interpol.int/bundles/interpolfront/images/logo-blanc.png" alt="">
 	</div>
 		<div class="col-sm-8">
-		<p class="recherche">Rapport d'intervention </p></p>
+		<p class="recherche">Rapport d'intervention </p>
 		</div>
 </div>
 </div>
@@ -82,12 +82,12 @@ if(!isset($_SESSION['name']))
 
 		<div class="col-sm-3">
 		<label for="player">Concernant :</label>
-		<input type="text" class="form-control" name="playerpid" placeholder="CNI de la personne">
+		<input type="text" class="form-control" name="playerpid" value="<?= $_GET['pid'];?>" disabled>
 		</div>
 
 		<div class="col-sm-3">
 		<label for="player">Depot de plainte :</label>
-		<input type="text" class="form-control" name="plaintenum" placeholder="Numero du depot">
+		<input type="text" class="form-control" name="plaintenum" placeholder="Numero du depot" disabled>
 		</div>
 		</div>
 
@@ -103,7 +103,7 @@ if(!isset($_SESSION['name']))
 
 		<div class="col-sm-3">
 		<label for="player">City :</label>
-		<input type="text" class="form-control" name="city" placeholder="City" required>
+		<input type="text" class="form-control" name="city" placeholder="City">
 		</div>
 
 		<div class="col-sm-3">

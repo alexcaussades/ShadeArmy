@@ -42,6 +42,7 @@ if(!isset($_SESSION['name']))
         <p class="card-text">
 			Grade : <?= $bluefort->displayCopLevel($_SESSION['coplevel']); ?> <br>
 			information importante :
+        <div><?= $bluefort->GetPlayerswanted();?></div>
 		</p>
 		<a href="./profile.php" class="btn btn-primary"><i class="fas fa-tools"></i> My Profile</a>
 		<a href="systeme.php?action=logout" class="btn btn-primary">Disconnect</a>		
@@ -60,24 +61,8 @@ if(!isset($_SESSION['name']))
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-bullhorn"></i> Rapport <span class="badge badge-secondary">New</span></h5>
-        <p class="card-text"></p>
-        <a href="./rapport.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-bullhorn"></i> Avis <span class="badge badge-secondary">New</span></h5>
-        <p class="card-text"></p>
-        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
-      </div>
-    </div>
-  </div>
+  
+ 
   <div class="col-sm-3">
     <div class="card">
       <div class="card-body">

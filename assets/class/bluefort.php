@@ -91,6 +91,19 @@ class BlueFort extends Players
 		}
 	}
 
+	public function GetPlayerswanted()
+	{
+		global $bdd;
+		$active ="on";
+		$q = $bdd->query("SELECT COUNT(*) AS id FROM wantedP")->fetchColumn();
+		if($q > 0)
+		{
+			?>
+			<a href="wantedplayer.php"><button type="button" class="btn btn-danger"disabled>Wanted <span class="badge badge-light"><?= $q;?></span></button></a>
+			<?php
+		}
+	}
+
 	public function GetplayersCasierView()
 	{
 		global $bdd;
