@@ -72,6 +72,7 @@ class ident
 				session_start();
 				$_SESSION['name'] = $logged['login'];
 				$_SESSION['pid'] = $logged['pid'];
+				$_SESSION['id'] = $logged['id'];
 				global $bdd;
 				$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
 				$q->execute(array(':pid' => $_SESSION['pid']));
@@ -136,7 +137,6 @@ class ident
 				date_default_timezone_set("Europe/Paris");
 				$date = date('Y m d H:i:s');
 				$loginusers = $_SESSION["name"];
-				var_dump($date);
 				$q = $bdd->prepare("UPDATE auth SET lastseen = :lastseen WHERE login = $loginusers");
 				$q->execute(array('lastseen' => $date));
 				var_dump($q);
@@ -264,6 +264,41 @@ class ident
 		}
 	}
 
+	public function user(): ?User
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $id = $_SESSION['id'] ?? null;
+        if ($id === null) {
+            return null;
+		}
+		global $bdd;
+		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+		$q->execute(array(':pid' => $_SESSION['pid']));
+			$role = $q->fetch();
+				if($role['pid'] == true)
+				{
+					return true;
+				}
+        
+    }
+
+    public static function getCoplevel($requirelvl): bool
+		{
+			global $bdd;
+			$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+			$q->execute(array(':pid' => $_SESSION['pid']));
+			$role = $q->fetch();
+				if($role['coplevel'] >= $requirelvl)
+				{
+					return true;
+				}
+				else{
+					return false;
+				}
+		}
+    
 
 
 

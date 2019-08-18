@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-setcookie( "login", $_SESSION['name'], strtotime( '+59 minute' ),"/", true, true );
-setcookie( "pid", $_SESSION['pid'], strtotime( '+59 minute' ),"/", true, true  );
-
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/bdd.php';
@@ -20,7 +17,7 @@ $bluefort = new bluefort;
 ?>
 <link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
 <?php
-//$ident->updatesession();
+
 
 if(!isset($_SESSION['name']))
 {
@@ -38,11 +35,19 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-12">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Bienvenue agent : <?= $_SESSION["name"]; ?></h5>
+        <h5 class="card-title">Bienvenue : <?= $_SESSION["name"]; ?></h5>
         <p class="card-text">
-			Grade : <?= $bluefort->displayCopLevel($_SESSION['coplevel']); ?> <br>
-			information importante :
-        <div><?= $bluefort->GetPlayerswanted();?></div>
+        <?php
+        if($ident->getCoplevel(1))
+        {
+          ?>
+          <div>Grade : <?= $bluefort->displayCopLevel($_SESSION['coplevel']); ?> <br>
+			    information importante :</div>
+          <div><?= $bluefort->GetPlayerswanted();?></div>
+          <?php
+        }
+        ?>
+
 		</p>
 		<a href="./profile.php" class="btn btn-primary"><i class="fas fa-tools"></i> My Profile</a>
 		<a href="systeme.php?action=logout" class="btn btn-primary">Disconnect</a>		
@@ -50,23 +55,25 @@ if(!isset($_SESSION['name']))
     </div>
   </div>
   <br>
-  <h3>Gendarmerie :</h3>
+
+
+  <h3>Civil :</h3>
 	<div class="container row">
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><i class="far fa-address-book"></i> Recherche <span class="badge badge-secondary">New</span></h5>
+        <h5 class="card-title"><i class="far fa-address-book"></i> déclaration de maison <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
-        <a href="./search.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+        <a href="#" class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</a>
       </div>
     </div>
   </div>
   
  
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-clipboard"></i> Les Amemdes <span class="badge badge-secondary">New</span></h5>
+        <h5 class="card-title"><i class="fas fa-clipboard"></i> vol de voiture <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
         <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
       </div>
@@ -77,52 +84,79 @@ if(!isset($_SESSION['name']))
 
 <br>
 <?php
-if($_SESSION['coplevel'] > 9)
-	{	
-  ?>
-<!-- Service administration  -->
-<h3>Administration :</h3>
-	<div class="container row">
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><i class="far fa-address-book"></i> Recherche <span class="badge badge-secondary">New</span></h5>
-        <p class="card-text"></p>
-        <a href="./search.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-plus-circle"></i> Rapport intervention adm <span class="badge badge-secondary">New</span></h5>
-        <p class="card-text"></p>
-        <a href="intervention.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-plus-circle"></i> AddUser <span class="badge badge-secondary">New</span></h5>
-        <p class="card-text"></p>
-        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-edit"></i></i>ModUser <span class="badge badge-secondary">New</span></h5>
-        <p class="card-text"></p>
-        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
-      </div>
-    </div>
-  </div>
-</div>
 
-	
-	<?php
+  if($ident->getCoplevel(1))
+	{	
+        ?>
+        <h3>Gendarmerie :</h3>
+        <div class="container row">
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="far fa-address-book"></i> Recherche <span class="badge badge-secondary">New</span></h5>
+              <p class="card-text"></p>
+              <a href="./search.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+            </div>
+          </div>
+        </div>
+        
+      
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-clipboard"></i> Les Amemdes <span class="badge badge-secondary">New</span></h5>
+              <p class="card-text"></p>
+              <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <br>
+      <?php
   }
+
+  if($ident->getCoplevel(9))
+	{	
+      ?>
+      <!-- Service administration  -->
+      <h3>Administration :</h3>
+        <div class="container row">
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="far fa-address-book"></i> Recherche <span class="badge badge-secondary">New</span></h5>
+              <p class="card-text"></p>
+              <a href="./search.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-plus-circle"></i> Rapport intervention adm <span class="badge badge-secondary">New</span></h5>
+              <p class="card-text"></p>
+              <a href="intervention.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-edit"></i></i>ModUser <span class="badge badge-secondary">New</span></h5>
+              <p class="card-text"></p>
+              <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        
+        <?php
+  }
+
+
 }
 ?>

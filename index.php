@@ -12,9 +12,6 @@ use ShadeLife\ident;
 
 $ident = new ident;
 
-//$ident->getCookie();
-
-
 ?>
 
 

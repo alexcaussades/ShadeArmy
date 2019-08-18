@@ -5,10 +5,12 @@ require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/bdd.php';
 require 'assets/class/players.php';
-
+require 'assets/class/ident.php';
 use ShadeLife\Players;
+use ShadeLife\ident;
+$ident = new ident;
 $player = new Players;
- 
+
 
 
 if(!isset($_SESSION['name']))
@@ -20,7 +22,7 @@ if(!isset($_SESSION['name']))
 	<?php
 }else
 { 
-	if($_SESSION['coplevel'] >= 1)
+	if($ident->getCoplevel(1))
 	{
 		$q = $bdd->prepare("SELECT * FROM rapport_int WHERE id = :id");
 		$q->execute(array('id'=> $_GET["id"]));
@@ -81,7 +83,7 @@ if(!isset($_SESSION['name']))
 			</div> <!-- fin de balise card -->
 
 			<?php
-			if($_SESSION['coplevel'] > 9)
+			if($ident->getCoplevel(9))
 			{
 				?>
 					<div class="card shadow-lg p-3 mb-5 bg-white rounded">

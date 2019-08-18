@@ -82,12 +82,12 @@ if(!isset($_SESSION['name']))
 
 		<div class="col-sm-3">
 		<label for="player">Concernant :</label>
-		<input type="text" class="form-control" name="playerpid" value="<?= $_GET['pid'];?>" disabled>
+		<input type="text" class="form-control" name="playerpid" value="<?= $_GET['pid'];?>">
 		</div>
 
 		<div class="col-sm-3">
 		<label for="player">Depot de plainte :</label>
-		<input type="text" class="form-control" name="plaintenum" placeholder="Numero du depot" disabled>
+		<input type="text" class="form-control" name="plaintenum" placeholder="Numero du depot">
 		</div>
 		</div>
 

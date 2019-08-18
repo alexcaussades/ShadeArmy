@@ -4,8 +4,9 @@ session_start();
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/bdd.php';
-
-
+require 'assets/class/ident.php';
+use ShadeLife\ident;
+$ident = new ident;
 
 if(!isset($_SESSION['name']))
 {
@@ -16,7 +17,7 @@ if(!isset($_SESSION['name']))
 	<?php
 }else
 { 
-	if($_SESSION['coplevel'] > 9)
+	if($ident->getCoplevel(9))
 	{		
 		?>
 		<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">

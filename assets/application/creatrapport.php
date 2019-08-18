@@ -39,7 +39,7 @@ if(isset($_POST['option']) && isset($_POST['city']) && isset($_POST['gps']) && i
 	$playerpid = htmlspecialchars(trim($_POST['playerpid']));
 	$plaintenum = htmlspecialchars(trim($_POST['plaintenum']));
 
-	echo $typeinter, $city, $gps, $txt, $officier, $pid, $playerpid, $plaintenum ;
+	//echo $typeinter, $city, $gps, $txt, $officier, $pid, $playerpid, $plaintenum ;
 
 	global $bdd;
 
