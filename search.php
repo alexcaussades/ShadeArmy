@@ -23,7 +23,7 @@ session_start();
         foreach($req as $r){
         ?>   
 				<tr>
-				<th scope="row"><?= htmlspecialchars($r['name']); ?></th>
+				<th scope="row"><?= htmlspecialchars($r['name']); ?> </th>
 				<th><a href="player.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-dark">Profile</button></a>
 				<a href="rapport.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-primary">Rapport</button></a>
 				<a href="wanted.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="submit" class="btn btn-danger">Wanted</button></a>

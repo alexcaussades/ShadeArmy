@@ -43,11 +43,16 @@ if(!isset($_SESSION['name']))
           ?>
           <div>Grade : <?= $bluefort->displayCopLevel($_SESSION['coplevel']); ?> <br>
 			    information importante :</div>
-          <div><?= $bluefort->GetPlayerswanted();?></div>
+          <div><?= $bluefort->GetPlayerswanted();?>
           <?php
+        }
+        if($ident->getCoplevel(9))
+        {
+          echo $bluefort->GetPlayersrapportnonlu();
         }
         ?>
 
+      </div>
 		</p>
 		<a href="./profile.php" class="btn btn-primary"><i class="fas fa-tools"></i> My Profile</a>
 		<a href="systeme.php?action=logout" class="btn btn-primary">Disconnect</a>		

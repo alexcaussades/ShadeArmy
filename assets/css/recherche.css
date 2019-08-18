@@ -3,6 +3,18 @@
 	margin-top: 30px;
 }
 
+#wanted{
+	background-image: url("../img/wanted.png");
+	/* width: 10%;
+	height: 10%; */
+}
+
+.rednotice{
+	width: 30%;
+	height: 30%;
+	float: right;
+}
+
 .recherche{
 	color: whitesmoke;
 	font-size: 48px;

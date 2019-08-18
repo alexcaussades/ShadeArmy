@@ -57,6 +57,8 @@ if(!isset($_SESSION['name']))
 		<form action="#" method="get">
 		<input type="hidden" name="pid" value="<?= $_GET['pid']; ?>">
 		<input type="hidden" name="demande" value="<?= $_SESSION['name']; ?>">
+		<label for="">Raison :</label>
+		<input type="text" class="form-control" name="raison" id="inlineFormInputGroup">
 		<div class="custom-control custom-checkbox">
 		<input type="checkbox" class="custom-control-input" name="confirme" id="customCheck1">
 		<label class="custom-control-label"  for="customCheck1">Je confime cette recherche !</label>
@@ -73,19 +75,31 @@ if(!isset($_SESSION['name']))
 <?php
 
 
-if(isset($_GET["confirme"]) == "on" && isset($_GET["pid"]) && isset($_GET["demande"]))
+if(isset($_GET["confirme"]) == "on" && isset($_GET["pid"]) && isset($_GET["demande"]) && isset($_GET['raison']))
 {	
 	
 	$pid = htmlspecialchars($_GET['pid']);
 	$name = htmlspecialchars($_GET['demande']);
-	$active = "on";
+	$raison = htmlspecialchars($_GET['raison']);
+	$type = "wanted";
+	$active = 1;
 
 	global $bdd;
-	$q = $bdd->prepare("INSERT INTO wantedP(pid, demande, active, date) VALUES (:pid, :demande, :active, NOW())");
+	$q = $bdd->prepare("INSERT INTO wantedP(pid, demande, raison, active, date) VALUES (:pid, :demande, :raison, :active, NOW())");
 	$q->bindParam(':pid', $pid);
 	$q->bindParam(':demande', $name);
+	$q->bindParam(':raison', $raison);
 	$q->bindParam(':active', $active);
 	$q->execute();
+
+	$sql = "INSERT INTO casier_jud(type, txt, pid, name, date) VALUES(:type, :txt, :pid, :name, NOW())";
+	$q = $bdd->prepare($sql);
+	$q->bindParam(':pid', $pid);
+	$q->bindParam(':type', $type);
+	$q->bindParam(':txt', $raison);
+	$q->bindParam(':name', $name);
+	$q->execute();
+
 	?>
 	<div class="info">
 			<div class="alert alert-info grade container" role="alert">

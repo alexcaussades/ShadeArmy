@@ -95,11 +95,11 @@ class BlueFort extends Players
 	{
 		global $bdd;
 		$active ="on";
-		$q = $bdd->query("SELECT COUNT(*) AS id FROM wantedP")->fetchColumn();
+		$q = $bdd->query("SELECT count(*) FROM wantedP WHERE active = 1")->fetchColumn();
 		if($q > 0)
 		{
 			?>
-			<a href="wantedplayer.php"><button type="button" class="btn btn-danger"disabled>Wanted <span class="badge badge-light"><?= $q;?></span></button></a>
+			<a href="wantedplayer.php"><button type="button" class="btn btn-danger">Wanted <span class="badge badge-light"><?= $q;?></span></button></a>
 			<?php
 		}
 	}
@@ -143,6 +143,62 @@ class BlueFort extends Players
 			Casier Vierge
 			</div>
 			</div>
+			<?php
+		}
+	}
+
+	public function GetPlayersBageWanted()
+	{
+		global $bdd;
+		$q = $bdd->query("SELECT * FROM wantedP WHERE active = 1 AND pid = ".$this->pid."")->fetchColumn();
+		if($q["active"] == 1)
+			{
+				?>
+				<img class="rednotice" src="<?= imguri();?>rednotice.png"  alt="">
+				<?php
+			}
+		
+		
+	}
+
+	public function GetPlayersBageWantedMini()
+	{
+		global $bdd;
+		$q = $bdd->query("SELECT * FROM wantedP WHERE active = 1 AND pid = ".$this->pid."")->fetchColumn();
+		if($q["active"] == 1)
+			{
+				?>
+				<img class="rednoticemini" src="<?= imguri();?>rednotice.png"  alt="">
+				<?php
+			}
+		
+		
+	}
+
+	public function GetMaqueLu()
+	{
+		global $bdd;
+		$q = $bdd->query("SELECT * FROM rapport_int WHERE nonlu = 1 AND id = ".$_GET["id"]."")->fetchColumn();
+		if($q["active"] == 1)
+			{
+				?>
+				<form action="#" method="get">
+				<input type="hidden" name="id" value="<?= $_GET['id']; ?>">
+				<button type="submit" name="lu" class="btn btn-secondary" title="Marquer comme lu"><i class="far fa-envelope-open"></i> Marquer comme lu</button>
+				</form>
+				<?php
+			}
+	}
+
+	public function GetPlayersrapportnonlu()
+	{
+		global $bdd;
+		$active ="on";
+		$q = $bdd->query("SELECT count(*) FROM rapport_int WHERE nonlu = 1")->fetchColumn();
+		if($q > 0)
+		{
+			?>
+			<a href="intervention.php"><button type="button" class="btn btn-primary">Rapport <span class="badge badge-light"><?= $q;?></span></button></a>
 			<?php
 		}
 	}

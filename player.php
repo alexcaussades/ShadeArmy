@@ -48,7 +48,6 @@ if(!isset($_SESSION['name']))
 		<div class="col-sm-8">
 		<p class="recherche"><?= $players->GetPlayersName(); ?></p>
 		<p class="nationalite">Nationalité : <?= $players->getPlayersLieuNaiss(); ?></p>
-		</div>
 </div>
 </div>
 </div>
@@ -61,6 +60,9 @@ if(!isset($_SESSION['name']))
 <div class="container identt">
   <div class="row">
     <div class="col-sm-4">
+		<?php
+		echo $bluefort->GetPlayersBageWanted();
+		?>
 	<div><img class="avatar" src="<?= imguri() ?>avatar.jpeg" alt=""></div>
     </div>
     <div class="col-sm-4">

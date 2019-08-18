@@ -60,29 +60,46 @@ if(!isset($_SESSION['name']))
 			<thead class="thead-dark">
 				<tr>
 				<th scope="col">Name</th>
+				<th scope="col">Raison</th>
 				<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php
 			global $bdd;
-			$req = $bdd->query("SELECT * FROM wantedP ");
+			$req = $bdd->query("SELECT * FROM players join wantedP WHERE wantedP.pid = players.pid AND active = 1");
 			while($r = $req->fetch())
 			{
         	?>   
 				<tr>
-				<th scope="row"><?= htmlspecialchars($r['pid']); ?></th>
-				<th><a href="player.php?pid=<?= htmlspecialchars($r['name']);?>"><button type="button" class="btn btn-dark">Profile</button></a></th>
+				<th scope="row"><?= htmlspecialchars($r['name']); ?></th>
+				<th scope="row"><?= htmlspecialchars($r['raison']); ?></th>
+				<th>
+				<a href="player.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-dark">Profile</button></a>
+				<form action="#" method="get">
+					<input type="hidden" name="pid" value="<?= $r['pid']; ?>">
+					<button type="submit" name="final" class="btn btn-success">Fin d'alerte</button>
+				</form>
+				</th>
 				</tr>
-		   		</tbody>
-  				</table>
-
-			</div>
-			<?php
+		   	<?php
 			}
+			?>
+				</tbody>
+  				</table>
+				</div>
 
 
-
-
-	
+<?php	
 }
+	if(isset($_GET['final']))
+	{
+		global $bdd;
+		$b = $bdd->prepare("UPDATE wantedP SET active = 0 WHERE pid = ".$_GET['pid']."");
+		$b->execute();
+		?>
+		<script>
+			window.location.replace("wantedplayer.php");
+		</script>
+		<?php
+	}

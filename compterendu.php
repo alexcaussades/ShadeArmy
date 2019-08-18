@@ -5,11 +5,14 @@ require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/bdd.php';
 require 'assets/class/players.php';
+require 'assets/class/bluefort.php';
 require 'assets/class/ident.php';
 use ShadeLife\Players;
 use ShadeLife\ident;
+use ShadeLife\BlueFort;
 $ident = new ident;
 $player = new Players;
+$bleufort = new BlueFort;
 
 
 
@@ -68,15 +71,20 @@ if(!isset($_SESSION['name']))
 				<h6>Date d'intervention: <?= $r['dateinter']; ?></h6>
 				<br>
 				<h6>Date du rapport: <?= $r['date']; ?></h6>
-				</div></div></div>
-				 </div> <!--fin de balise col-sm-4 -->
+				</div></div>
+
+				<!-- button maquer comme lu -->
+				<?= $bleufort->GetMaqueLu();?>
+				</div>
+				
+			</div> <!--fin de balise col-sm-4 -->
 
 				 <div class="col-sm-8">
 					<h3>Détail d'intervention :</h3>
 					<br>
 					<?= $r['txt']; ?> 
 				 </div>
-
+				 
 			</div>
 			</div>
 			</div>
@@ -116,6 +124,7 @@ if(!isset($_SESSION['name']))
 						$pid = $_GET['pid'];
 						?>
 						<form action="#" method="get">
+						<label for="">Suite a donner ! </label><br>
 						<input type="text" name="id" value="<?= $r['id']; ?>">
 						
 						<button type="submit" name="affaire">poursuite</button>
@@ -130,6 +139,20 @@ if(!isset($_SESSION['name']))
 						$pid = $_GET['pid'];
 						
 					}
+
+					if(isset($_GET["lu"]))
+				 	{
+						$id = $_GET['id'];
+						global $bdd;
+						$q =  $bdd->prepare("UPDATE rapport_int SET nonlu = 0 WHERE id = ".$id."");
+						$q->execute();
+						?>
+						<script>
+							window.location.replace("compterendu.php?id=<?=$id;?>");
+						</script>
+						<?php
+						
+				 	}
 			}
 		}
 		

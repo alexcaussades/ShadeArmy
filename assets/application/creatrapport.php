@@ -38,12 +38,13 @@ if(isset($_POST['option']) && isset($_POST['city']) && isset($_POST['gps']) && i
 	$pid = htmlspecialchars(trim($_POST['pid']));
 	$playerpid = htmlspecialchars(trim($_POST['playerpid']));
 	$plaintenum = htmlspecialchars(trim($_POST['plaintenum']));
+	$nonlu = 1;
 
 	//echo $typeinter, $city, $gps, $txt, $officier, $pid, $playerpid, $plaintenum ;
 
 	global $bdd;
 
-	$q = $bdd->prepare("INSERT INTO rapport_int (typerap, city, gps, txt, officier, pid, playerpid, plaintenum, dateinter, date) VALUES (:typerap, :city, :gps, :txt, :officier, :pid, :playerpid, :plaintenum, :dateinter, now())");
+	$q = $bdd->prepare("INSERT INTO rapport_int (typerap, city, gps, txt, officier, pid, playerpid, plaintenum, dateinter, nonlu, date) VALUES (:typerap, :city, :gps, :txt, :officier, :pid, :playerpid, :plaintenum, :dateinter, :nonlu, now())");
 	$q->bindParam(':typerap', $typeinter);
 	$q->bindParam(':city', $city);
 	$q->bindParam(':gps', $gps);
@@ -53,6 +54,7 @@ if(isset($_POST['option']) && isset($_POST['city']) && isset($_POST['gps']) && i
 	$q->bindParam(':playerpid', $playerpid);
 	$q->bindParam(':plaintenum', $plaintenum);
 	$q->bindParam(':dateinter', $dateinter);
+	$q->bindParam(':nonlu', $nonlu);
 	$q->execute();
 	$lastid = $bdd->lastInsertId();
 	?>

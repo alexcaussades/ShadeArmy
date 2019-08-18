@@ -227,63 +227,9 @@ class ident
 	 * - Redirige vers rep.php 
 	 * 
 	 */
-	public function getCookie()
-	{
-		if(isset($_COOKIE['login']) && isset($_COOKIE['pid']))
-			{
-			$loginusers = $_COOKIE['login'];
-			$pid = $_COOKIE['pid'];
-			global $bdd;
-			$q = $bdd->prepare("SELECT * FROM auth WHERE login = :login AND pid = :pid");
-				$q->execute(array(':login' => $loginusers, ':pid' => $pid));
-			$logged = $q->fetch();
-			if(!$logged)
-			{
-			
-			}else {
-				global $bdd;
-				$q = $bdd->prepare("UPDATE auth SET lastseen = NOW() WHERE login = :login");
-				$q->bindValue(":login", $loginusers);
-				$q->execute();
-				session_start();
-				$_SESSION['name'] = $logged['login'];
-				$_SESSION['pid'] = $logged['pid'];
-				global $bdd;
-				$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
-				$q->execute(array(':pid' => $_SESSION['pid']));
-				while ($r = $q->fetch())
-				{
-				$_SESSION['coplevel'] = $r['coplevel'];
-				?>
-				<script>
-					window.location.replace("rep.php");
-				</script>
-				<?php
-				}
-			}
-		}
-	}
+	
 
-	public function user(): ?User
-    {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        $id = $_SESSION['id'] ?? null;
-        if ($id === null) {
-            return null;
-		}
-		global $bdd;
-		$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
-		$q->execute(array(':pid' => $_SESSION['pid']));
-			$role = $q->fetch();
-				if($role['pid'] == true)
-				{
-					return true;
-				}
-        
-    }
-
+	
     public static function getCoplevel($requirelvl): bool
 		{
 			global $bdd;
