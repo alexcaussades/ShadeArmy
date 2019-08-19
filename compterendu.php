@@ -24,7 +24,10 @@ if(!isset($_SESSION['name']))
     </script>
 	<?php
 }else
-{ 
+{ if($ident->getCoplevel(1))
+	{
+  		require 'assets/auto/navbar-gendarmerie.php';
+	}
 	if($ident->getCoplevel(1))
 	{
 		$q = $bdd->prepare("SELECT * FROM rapport_int WHERE id = :id");
@@ -106,13 +109,10 @@ if(!isset($_SESSION['name']))
 					<input type="hidden" name="suitedesuivie" value="Affaire Classer">
 					<button type="submit" class="btn btn-secondary" name="classer">Classer</button>
 					</form>
-						
-					<form action="#" method="get">
+					&nbsp; &nbsp;	
+					<form action="#reply" method="get">
 					<input type="hidden" name="id" value="<?= $r['id']; ?>">
-					<input type="hidden" name="suitedesuivie" value="poursuite">
-					<input type="hidden" name="rapport" value="<?= $r['id']; ?>">
-					<input type="hidden" name="pid" value="<?= $r['playerpid']; ?>">
-					<button type="submit" class="btn btn-success" name="affaire">poursuite</button>
+					<button type="submit" class="btn btn-success" name="creatsuite">poursuite</button>
 					</form></div>
 
 					</div>
@@ -129,7 +129,7 @@ if(!isset($_SESSION['name']))
 			<thead class="thead-dark">
 				<tr>
 				<th scope="col">Name</th>
-				<th scope="col">Raison</th>
+				<th scope="col">Information</th>
 				<th scope="col">Action</th>
 				</tr>
 			</thead>
@@ -215,8 +215,13 @@ if(!isset($_SESSION['name']))
 					if(isset($_GET["lu"]))
 				 	{
 						$id = $_GET['id'];
+						$pid = $_SESSION['pid'];
+						$active = 1;
 						global $bdd;
-						$q =  $bdd->prepare("UPDATE rapport_int SET nonlu = 0 WHERE id = ".$id."");
+						$q = $bdd->prepare("INSERT INTO rapport_int_lue(rapport_id, pid, active) VALUES(:rapport_id, :pid, :active)");
+						$q->bindValue(":rapport_id", $id);
+						$q->bindValue(":pid", $pid);
+						$q->bindValue(":active", $active);
 						$q->execute();
 						?>
 						<script>
@@ -280,6 +285,28 @@ if(!isset($_SESSION['name']))
 					<?php	
 					}
 
+					if(isset($_GET['creatsuite']))
+					{
+						?>
+							<div class="card segonde shadow-lg p-3 mb-5 bg-white rounded" id="reply">
+								<div class="container">
+										
+										<form action="#" method="get">
+										<input type="hidden" name="id" value="<?= $_GET['id']; ?>">
+										
+										<Label>Qu'elle est l'étape suivante ; </Label> <br />
+										<input class="form-control" name="textdesuivie" type="text" placeholder="">
+										<br>
+										<button type="submit" class="btn btn-success" name="replys">Envoyer <i class="fas fa-reply"></i></button>
+										</div>
+										</form>
+										
+							</div>
+							</div>
+							</div>
+					<?php	
+					}
+
 					
 						if(isset($_GET['replys']))
 						{
@@ -297,7 +324,7 @@ if(!isset($_SESSION['name']))
 						$q->execute();
 						?>
 						<script>
-							window.location.replace("compterendu.php?id=<?= $id_rapport; ?>");
+							window.location.replace("compterendu.php?id=<?= $id_rapport; ?>#reply");
 						</script>
 						<?php
 						}
@@ -319,4 +346,4 @@ if(!isset($_SESSION['name']))
 	}
 
 
-}
+}require 'footer.php';

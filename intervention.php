@@ -17,6 +17,10 @@ if(!isset($_SESSION['name']))
 	<?php
 }else
 { 
+	if($ident->getCoplevel(1))
+	{
+  		require 'assets/auto/navbar-gendarmerie.php';
+	}
 	if($ident->getCoplevel(9))
 	{		
 		?>
@@ -40,7 +44,7 @@ if(!isset($_SESSION['name']))
 			<div class="container table-responsive-sm ">
 	
 			<table class="table">
-				<thead class="thead-dark">
+				<thead class="thead-dark" id="home">
 					<tr>
 					<th scope="col">type</th>
 					<th scope="col">Officier</th>
@@ -81,4 +85,6 @@ if(!isset($_SESSION['name']))
 
 
 }
+require 'footer.php';
+?>
 

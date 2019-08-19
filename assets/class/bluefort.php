@@ -178,8 +178,8 @@ class BlueFort extends Players
 	public function GetMaqueLu()
 	{
 		global $bdd;
-		$q = $bdd->query("SELECT * FROM rapport_int WHERE nonlu = 1 AND id = ".$_GET["id"]."")->fetchColumn();
-		if($q["active"] == 1)
+		$q = $bdd->query("SELECT * FROM rapport_int_lue WHERE pid = ".$_SESSION["pid"]." AND rapport_id = ".$_GET["id"]."")->fetchColumn();
+		if(!$q["active"])
 			{
 				?>
 				<form action="#" method="get">
@@ -193,14 +193,12 @@ class BlueFort extends Players
 	public function GetPlayersrapportnonlu()
 	{
 		global $bdd;
-		$active ="on";
-		$q = $bdd->query("SELECT count(*) FROM rapport_int WHERE nonlu = 1")->fetchColumn();
-		if($q > 0)
-		{
+		$b = $bdd->query("SELECT COUNT(*) AS id FROM rapport_int_lue WHERE pid = ".$_SESSION["pid"]."")->fetchColumn();
+		$q = $bdd->query("SELECT count(*) FROM rapport_int ")->fetchColumn();
+		$t = $q-$b;
 			?>
-			<a href="intervention.php"><button type="button" class="btn btn-primary">Rapport <span class="badge badge-light"><?= $q;?></span></button></a>
-			<?php
-		}
+			<a href="intervention.php"><button type="button" class="btn btn-primary">Rapport <span class="badge badge-light"><?= $t;?></span></button></a>
+			<?php	
 	}
 
 	public function GetPlayersrapportfav()

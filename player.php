@@ -36,6 +36,10 @@ if(!isset($_SESSION['name']))
 	<?php
 }else
 {
+	if($ident->getCoplevel(1))
+	{
+  		require 'assets/auto/navbar-gendarmerie.php';
+	}
 ?>
 
 <div class="bandeau">
@@ -158,4 +162,5 @@ if(!isset($_SESSION['name']))
 </div>
 <?php
 }
+require 'footer.php';
 ?>

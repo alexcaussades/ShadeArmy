@@ -8,6 +8,7 @@ require 'assets/class/players.php';
 require 'assets/class/impot.php';
 require 'assets/class/ident.php';
 require 'assets/class/bluefort.php';
+
 use ShadeLife\Players;
 use ShadeLife\Impots;
 use ShadeLife\ident;
@@ -28,6 +29,15 @@ if(!isset($_SESSION['name']))
 	<?php
 }else
 {
+    if($ident->getCoplevel(1))
+        {
+          /** NAVBAR GENDARMERIE */
+          require 'assets/auto/navbar-gendarmerie.php';
+        }else{
+          /** NAVBAR civil */
+          require 'assets/auto/navbar.php';
+        }
+
 	?>
 	
 	
@@ -43,6 +53,7 @@ if(!isset($_SESSION['name']))
           ?>
           <div>Grade : <?= $bluefort->displayCopLevel($_SESSION['coplevel']); ?> <br>
 			    information importante :</div>
+          <br>
           <div><?= $bluefort->GetPlayerswanted();?>
           <?php
         }
@@ -54,8 +65,7 @@ if(!isset($_SESSION['name']))
 
       </div>
 		</p>
-		<a href="./profile.php" class="btn btn-primary"><i class="fas fa-tools"></i> My Profile</a>
-		<a href="systeme.php?action=logout" class="btn btn-primary">Disconnect</a>		
+	
       </div>
     </div>
   </div>
@@ -109,7 +119,7 @@ if(!isset($_SESSION['name']))
         <div class="col-sm-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-clipboard"></i> Les Amemdes <span class="badge badge-secondary">New</span></h5>
+              <h5 class="card-title"><i class="fas fa-clipboard"></i> Les Amendes <span class="badge badge-secondary">New</span></h5>
               <p class="card-text"></p>
               <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
             </div>
@@ -164,4 +174,6 @@ if(!isset($_SESSION['name']))
 
 
 }
+
+require 'footer.php';
 ?>
