@@ -48,7 +48,7 @@ if(!isset($_SESSION['name']))
         }
         if($ident->getCoplevel(9))
         {
-          echo $bluefort->GetPlayersrapportnonlu();
+          echo $bluefort->GetPlayersrapportnonlu()." ".$bluefort->GetPlayersrapportfav();
         }
         ?>
 

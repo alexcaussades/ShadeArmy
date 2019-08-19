@@ -75,6 +75,8 @@ if(!isset($_SESSION['name']))
 
 				<!-- button maquer comme lu -->
 				<?= $bleufort->GetMaqueLu();?>
+				<br>
+				<?= $bleufort->SetRapportFavory();?>
 				</div>
 				
 			</div> <!--fin de balise col-sm-4 -->
@@ -101,7 +103,7 @@ if(!isset($_SESSION['name']))
 					<div class="d-flex justify-content-center">
 					<form action="#" method="get">
 					<input type="hidden" name="id" value="<?= $r['id']; ?>">
-					<input type="hidden" name="suitedesuivie" value="classer">
+					<input type="hidden" name="suitedesuivie" value="Affaire Classer">
 					<button type="submit" class="btn btn-secondary" name="classer">Classer</button>
 					</form>
 						
@@ -116,6 +118,64 @@ if(!isset($_SESSION['name']))
 					</div>
 					</div>
 					</div>
+
+					<div class="card shadow-lg p-3 mb-5 bg-white rounded">
+					<div class="container">
+					<div class="row">
+
+					<div class="container grade table-responsive-sm ">
+	
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Raison</th>
+				<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php
+			global $bdd;
+			$req = $bdd->query("SELECT * FROM players join rapport_int_suite WHERE rapport_int_suite.pid = players.pid AND id_rapport = ".$_GET['id']."");
+			while($r = $req->fetch())
+			{
+        	?>   
+				<tr>
+				<th scope="row"><?= htmlspecialchars($r['name']); ?></th>
+				<th scope="row"><?= htmlspecialchars($r['text_suite']); ?></th>
+				<th>
+				<?php
+						if($r['classer'] == 1)
+						{
+							?>
+							<button type="button" class="btn btn-success" disabled>repondre <i class="fas fa-reply"></i></button>
+							<?php
+						}else{
+							?>
+							<form action="#reply" method="get">
+							<input type="hidden" name="id" value="<?= $_GET['id']; ?>">
+							<button type="submit" name="reply" class="btn btn-success">repondre <i class="fas fa-reply"></i></button>
+							</form>
+							<?php
+						}
+					
+					?>
+				</th>
+				</tr>
+		   	<?php
+			}
+			?>
+				</tbody>
+  				</table>
+				</div>
+
+					
+						
+					</div>
+					</div>
+					</div>
+
+
 					<?php
 					if(isset($_GET['affaire']))
 					{
@@ -134,10 +194,22 @@ if(!isset($_SESSION['name']))
 
 					if(isset($_GET['classer']))
 					{
-						$id = $_GET['rapport'];
 						$classement = $_GET['suitedesuivie'];
-						$pid = $_GET['pid'];
-						
+						$classer = 1;
+						$id_rapport = $_GET["id"];
+						$pid = $_SESSION['pid'];
+						global $bdd;
+						$q = $bdd->prepare("INSERT INTO rapport_int_suite(id_rapport, pid, text_suite, classer, date) VALUES(:id_rapport, :pid, :text_suite, :classer, NOW())");
+						$q->bindValue(":id_rapport", $id_rapport);
+						$q->bindValue(":pid", $pid);
+						$q->bindValue(":text_suite", $classement);
+						$q->bindValue(":classer", $classer);
+						$q->execute();
+						?>
+						<script>
+							window.location.replace("compterendu.php?id=<?= $id_rapport; ?>");
+						</script>
+						<?php
 					}
 
 					if(isset($_GET["lu"]))
@@ -152,7 +224,83 @@ if(!isset($_SESSION['name']))
 						</script>
 						<?php
 						
-				 	}
+					 }
+					 
+					if(isset($_GET['bookmarks']))
+					{
+						$id_rapport = $_GET["id"];
+						$pid = $_SESSION['pid'];
+						global $bdd;
+						$q = $bdd->prepare("INSERT INTO rapport_int_fav(id_rapport, pid) VALUES(:id_rapport, :pid)");
+						$q->bindValue(":id_rapport", $id_rapport);
+						$q->bindValue(":pid", $pid);
+						$q->execute();
+						?>
+						<script>
+							window.location.replace("compterendu.php?id=<?= $id_rapport; ?>");
+						</script>
+						<?php
+					}
+
+					if(isset($_GET['unsetbookmarks']))
+					{
+						$id_rapport = $_GET["id"];
+						$pid = $_SESSION['pid'];
+						global $bdd;
+						$q = $bdd->prepare("DELETE FROM rapport_int_fav WHERE id_rapport = :id_rapport AND pid = :pid");
+						$q->bindValue(":id_rapport", $id_rapport);
+						$q->bindValue(":pid", $pid);
+						$q->execute();
+						?>
+						<script>
+							window.location.replace("compterendu.php?id=<?= $id_rapport; ?>");
+						</script>
+						<?php
+					}
+
+					if(isset($_GET['reply']))
+					{
+						?>
+							<div class="card segonde shadow-lg p-3 mb-5 bg-white rounded" id="reply">
+								<div class="container">
+										
+										<form action="#" method="get">
+										<input type="hidden" name="id" value="<?= $_GET['id']; ?>">
+										
+										<Label>Reponse : </Label> <br />
+										<input class="form-control" name="textdesuivie" type="text" placeholder="Envoyer une reponse">
+										<br>
+										<button type="submit" class="btn btn-success" name="replys">Envoyer <i class="fas fa-reply"></i></button>
+										</div>
+										</form>
+										
+							</div>
+							</div>
+							</div>
+					<?php	
+					}
+
+					
+						if(isset($_GET['replys']))
+						{
+						
+						$classement = htmlspecialchars($_GET['textdesuivie']);
+						$classer = 0;
+						$id_rapport = $_GET["id"];
+						$pid = $_SESSION['pid'];
+						global $bdd;
+						$q = $bdd->prepare("INSERT INTO rapport_int_suite(id_rapport, pid, text_suite, classer, date) VALUES(:id_rapport, :pid, :text_suite, :classer, NOW())");
+						$q->bindValue(":id_rapport", $id_rapport);
+						$q->bindValue(":pid", $pid);
+						$q->bindValue(":text_suite", $classement);
+						$q->bindValue(":classer", $classer);
+						$q->execute();
+						?>
+						<script>
+							window.location.replace("compterendu.php?id=<?= $id_rapport; ?>");
+						</script>
+						<?php
+						}
 			}
 		}
 		

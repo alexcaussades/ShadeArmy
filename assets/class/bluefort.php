@@ -202,4 +202,44 @@ class BlueFort extends Players
 			<?php
 		}
 	}
+
+	public function GetPlayersrapportfav()
+	{
+		global $bdd;
+		$active ="on";
+		$q = $bdd->query("SELECT count(*) FROM rapport_int_fav WHERE pid = ".$_SESSION["pid"]."")->fetchColumn();
+		if($q > 0)
+		{
+			?>
+			<a href="#"><button type="button" class="btn btn-info" disabled>Favoris <span class="badge badge-light"><?= $q;?></span></button></a>
+			<?php
+		}
+	}
+
+	public function SetRapportFavory()
+	{
+		$id_rapport = $_GET['id'];
+		global $bdd;
+		$q = $bdd->query("SELECT count(*) FROM rapport_int_fav WHERE id_rapport = ".$_GET["id"]." AND pid = ".$_SESSION["pid"]."")->fetchColumn();
+		if($q > 0)
+		{
+			?>
+			<form action="#" method="get">
+				<input type="hidden" name="id" value="<?= $_GET['id']; ?>">
+				<input type="hidden" name="pid" value="<?= $_GET['pid']; ?>">
+				<button type="submit" name="unsetbookmarks" class="btn btn-secondary" title="Supprimer des Favoris"><i class="fas fa-star"></i> Supprimer des Favoris</button>
+				</form>
+			<?php
+		}else{
+			?>
+			<form action="#" method="get">
+				<input type="hidden" name="id" value="<?= $_GET['id']; ?>">
+				<input type="hidden" name="pid" value="<?= $_GET['pid']; ?>">
+				<button type="submit" name="bookmarks" class="btn btn-secondary" title="Marquer comme Favoris"><i class="far fa-star"></i></i> Ajouter aux Favoris</button>
+				</form>
+			<?php
+		}
+		
+		
+	}
 }
