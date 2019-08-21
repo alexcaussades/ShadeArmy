@@ -19,6 +19,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="search.php">Recherche</a>
+          <a class="dropdown-item" href="amende.php">Amende</a>
+          <a class="dropdown-item" href="amende-retrieve-car.php">Retrouvez les Amendes VHL</a>
+          <a class="dropdown-item" href="amende-retrieve-player.php">Retrouvez les Amendes Player</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="intervention.php">Rapport intervention</a>
           <a class="dropdown-item" href="#">Favori</a>

@@ -13,7 +13,7 @@ use ShadeLife\ident;
 $ident = new ident;
 
 ?>
-
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="<?= cssuri(); ?>index.css">
 <div class="alert alert-danger" role="alert">
@@ -23,10 +23,20 @@ $ident = new ident;
  <li> Création des rapports d'intervention </li> 
 </div>
 
-<div class="d-flex justify-content-center">
-  <img class="logogend" src="<?= imguri(); ?>LogoGouv.png" alt="" title="A remplacer avec le nouveau logo">
-</div>
-
+<div class="bandeau">
+		<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<img class="logofrancais" src="./assets/img/logogvt.jpg" alt="">
+			</div>
+				<div class="col-sm-8">
+				<p class="recherche1"> Portail Gouvernemental</p>
+				</div>
+		</div>
+		</div>
+		</div>
+		</div>
+<br><br><br>
 
 <div class="formgnd d-flex justify-content-center">
   <form name="ident" action="#" method="post">

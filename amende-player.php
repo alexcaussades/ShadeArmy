@@ -41,14 +41,14 @@ if(!isset($_SESSION['name']))
 			<img class="ineterpol" src="https://www.interpol.int/bundles/interpolfront/images/logo-blanc.png" alt="">
 			</div>
 			<div class="col-sm-8">
-			<p class="recherche1">Création de l'Amende pour : <?php echo $_GET["immat"];?> </p>
+			<p class="recherche1">Création d'une Amende </p>
 			</div>
 			</div>
 			</div>
 			</div>
 			</div>
 		<?php
-		$q = $bdd->query("SELECT * FROM vehicles WHERE id = ".$_GET['id']."");
+		$q = $bdd->query("SELECT * FROM players WHERE pid = ".$_GET['pid']."");
 		$r = $q->fetch();
 		?>
 
@@ -73,8 +73,6 @@ if(!isset($_SESSION['name']))
 		
 		</select>
 		<input type="hidden" name="pid"  value="<?= $_GET['pid'];?>">
-		<input type="hidden" name="id" value="<?= $_GET['id'];?>">
-		<input type="hidden" name="immat" value="<?= $_GET['immat'];?>">
 		<button type="submit" name="prepa" class="btn btn-primary">Poursuivre l'amendement</button>
 		</form>
 
@@ -95,7 +93,7 @@ if(!isset($_SESSION['name']))
 			<div class="input-group-prepend">
 			<span class="input-group-text">$</span>
 			</div>
-			<input type="hidden" name="id" value="<?= $_GET['id'];?>">
+			<input type="hidden" name="pid" value="<?= $_GET['pid'];?>">
 			<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" value="<?= array_sum($_GET["crime"]);?>">
 			</div>
 
@@ -107,7 +105,6 @@ if(!isset($_SESSION['name']))
 			<input type="hidden" name="somme" id="" value="<?= array_sum($_GET["crime"]);?>">
 			<input type="hidden" name="pid"  value="<?= $_GET['pid'];?>">
 			
-			<input type="hidden" name="immat" value="<?= $_GET['immat'];?>">
 			<br>
 			<button type="submit" name="create" class="btn btn-primary">Enregister</button>
 			</form>
@@ -119,47 +116,28 @@ if(!isset($_SESSION['name']))
 
 		if(isset($_GET["create"]))
 		{
-			$idvhl = htmlspecialchars($_GET['id']);
 			$somme = htmlspecialchars($_GET['somme']);
 			$pid = htmlspecialchars($_GET['pid']);
-			$immat = htmlspecialchars($_GET['immat']);
 			$paid = (empty($_GET["paid"])) ? '0' : htmlspecialchars($_GET["paid"]);
 			
-			$q = $bdd->prepare("INSERT INTO amende_vhl(id_vhl, somme, pid, immat, paid, date) VALUES(:id_vhl, :somme, :pid, :immat, :paid, NOW())");
-			$q->bindValue(":id_vhl", $idvhl);
+			$q = $bdd->prepare("INSERT INTO amende_players(somme, pid, paid, date) VALUES(:somme, :pid, :paid, NOW())");
 			$q->bindValue(":somme", $somme);
 			$q->bindValue(":pid", $pid);
-			$q->bindValue(":immat", $immat);
 			$q->bindValue(":paid", $paid);
 			$q->execute();
 
-			$message = "L'enregistement de l'amende a bien était effectué ";
+			$q = $bdd->prepare("INSERT INTO casier_jud(type, txt, pid, name, date) VALUE(:type, :txt, :pid, :name, NOW())");
+				$q->bindValue(":type", "Amende Forfaitaire");
+				$q->bindValue(":txt", "Une amende forfaitaire de ".$somme." $ a était émise");
+				$q->bindValue(":pid", $pid);
+				$q->bindValue(":name", $_SESSION["name"]);
+				$q->execute();
+
+				$message = "L'enregistement de l'amende a bien était effectué, avec une insciption au casier judiciaire également";
 			?>
 			<br>
 			<div class="alert alert-primary" role="alert">
 			<?= $message; ?>
-			</div>
-			<?php
-
-			?>
-			<br>
-			<div class="card segonde shadow-lg p-3 mb-5 bg-white rounded" id="">
-			<div class="container">
-			<div class="row">
-			<div class="col-sm-12">
-			<form action="retraitpoints.php" method="get">
-			<div class="custom-control custom-checkbox">
-			<input type="checkbox" name="point" value="o" class="custom-control-input" id="customCheck1">
-			<label class="custom-control-label" for="customCheck1">L'infraction entraîne-t-il un retrait de points ?</label>
-			<input type="hidden" name="pid"  value="<?= $_GET['pid'];?>">
-			</div>
-			<br>
-			<button type="submit"class="btn btn-primary">continuer</button>
-			</form>
-			<br>
-			<a href="rep.php"><button type="submit" class="btn btn-dark">Retour au pannel</button></a>
-			</div>
-			</div>
 			</div>
 			<?php
 		}

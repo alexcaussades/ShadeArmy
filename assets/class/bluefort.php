@@ -123,7 +123,7 @@ class BlueFort extends Players
 				</thead>
 				<tbody>
 				<?php
-			$q = $bdd->query("SELECT * FROM casier_jud WHERE pid = ".$this->pid."");
+			$q = $bdd->query("SELECT * FROM casier_jud WHERE pid = ".$this->pid." ORDER BY id DESC");
 			while ($r = $q->fetch())
 			{
 				?>

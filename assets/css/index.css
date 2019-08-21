@@ -18,3 +18,19 @@ footer {position: absolute; bottom: 0;}
 .version {
 	margin-right: 15px;
 }
+
+.logofrancais{
+	width: 59%;
+	height: 100%;
+}
+
+.recherche1{
+	font-family: 'Lato', sans-serif;
+	color: whitesmoke;
+	font-size: 38px;
+	height: 4em; /* hauteur du parent */
+	line-height: 4em; /* hauteur de ligne (identique) */
+	white-space: nowrap; /* interdiction de passer à la ligne */
+	/* box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); */
+	text-shadow: 1px 1px 2px black, 0 0 25px white, 0 0 5px white;
+}

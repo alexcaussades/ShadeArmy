@@ -16,6 +16,8 @@ use ShadeLife\BlueFort;
 $ident = new ident;
 $bluefort = new bluefort;
 
+
+
 if(!isset($_SESSION['name']))
 {
 	?>
@@ -41,7 +43,7 @@ if(!isset($_SESSION['name']))
 			<img class="ineterpol" src="https://www.interpol.int/bundles/interpolfront/images/logo-blanc.png" alt="">
 			</div>
 			<div class="col-sm-8">
-			<p class="recherche1">Création d'une amende </p>
+			<p class="recherche1">Récapitulatif des amendes </p>
 			</div>
 			</div>
 			</div>
@@ -56,33 +58,52 @@ if(!isset($_SESSION['name']))
 			
 			<div class="col-sm">
 			<div class="card">
-				<div class="card-body">
-					<h5 class="card-title d-flex justify-content-center"><i class="fas fa-car ammende"></i></h5>
-					<p class="card-text d-flex justify-content-center">Suite à un contrôle de véhicule</p>
-					<a href="amende-car.php" class="btn btn-success d-flex justify-content-center"></i> Commencer</a>
-				</div>
-				</div>
-				</div>
-
-				<div class="col-sm">
-					<div class="card">
-				<div class="card-body">
-					<h5 class="card-title d-flex justify-content-center"><i class="fas fa-user ammende"></i></h5>
-					<p class="card-text d-flex justify-content-center">Suite à un contrôle de Personne</p>
-					<a href="amende-search-player.php" class="btn btn-success d-flex justify-content-center"></i> Commencer</a>
-				</div>
-				</div>
-				</div>
-			</div>
-			</div>
-			</div>
 			
+			<div class="container"><h3>Les Amendes sur VHL</h3></div>
 
+			<div class="container table-responsive-sm ">
+	
+			<table class="table">
+			<thead class="thead-dark">
+			<tr>
+			<th scope="col">Plaque</th>
+			<th scope="col">Somme</th>
+			<th scope="col">payer</th>
+			<th scope="col">date</th>
+			<th scope="col">action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php 
+			global $bdd;
+			$q = $bdd->query("SELECT * FROM amende_vhl");
+			while($r = $q->fetch()){
+			?>
+			<tr>
+				<th scope="row"><?= htmlspecialchars($r['immat']); ?> </th>
+				<th scope="row"><?= htmlspecialchars($r['somme']); ?></th>
+				<th scope="row"><?php if($r['paid'] == 1){echo 'oui';}else{ echo 'non';}?></th>
+				<th scope="row"><?= htmlspecialchars($r['date']); ?></th>
+				<th scope="row"><a href="?paid=paid&id=<?= $r['id']?>"><?php if($r['paid'] == 1){}else{ echo 'Payement';}?></a></th>
+			</tr>
+			<?php
+			}
+			?>
+			</tbody>
+		  	</table>
+  			</div>
 
 			</div>
 			</div>
 			</div>
-		<?php
-	}}
+			<?php
+	}
+		}
 
-	require 'footer.php';
+		if (isset($_GET['paid'])) 
+		{
+			$id = htmlspecialchars($_GET['id']);
+			$q = $bdd->prepare("UPDATE amende_vhl SET paid = 1 WHERE id= ".$id." ");
+			$q->execute();
+		}
+require 'footer.php';
