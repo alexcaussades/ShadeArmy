@@ -240,4 +240,37 @@ class BlueFort extends Players
 		
 		
 	}
+
+	public function GetMarqueLuInterventionTableau($value)
+	{
+		global $bdd;
+		$t = $bdd->query("SELECT * FROM rapport_int_lue join rapport_int WHERE rapport_int_lue.rapport_id = rapport_int.id AND rapport_int_lue.pid = ".$_SESSION["pid"]." AND rapport_int_lue.rapport_id = ".$value."");
+		$q = $t->fetch();
+		//var_dump($t);
+		if ($q["rapport_id"] != $value)
+		{
+			
+		}else{
+			?>
+			<i class="far fa-envelope-open">
+			<?php
+		}
+	}
+
+	public function GetMarqueFavoryInterventionTableau($value)
+	{
+		global $bdd;
+		$t = $bdd->query("SELECT * FROM rapport_int_fav join rapport_int WHERE rapport_int_fav.id_rapport = rapport_int.id AND rapport_int_fav.pid = ".$_SESSION["pid"]." AND rapport_int_fav.id_rapport = ".$value."");
+		$q = $t->fetch();
+		//var_dump($t);
+		if ($q["id_rapport"] != $value)
+		{
+			
+		}else{
+			?>
+			<i class="fas fa-star"></i>
+			<?php
+		}
+	}
+	
 }

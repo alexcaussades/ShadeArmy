@@ -23,14 +23,21 @@ error_reporting(E_ALL);
 // }
 
 //echo $_SESSION["pid"];
-
-
-$b = $bdd->query("SELECT COUNT(*) AS id FROM rapport_int_lue WHERE pid = ".$_SESSION["pid"]."")->fetchColumn();
-//echo $b;
-
-$q = $bdd->query("SELECT count(*) FROM rapport_int ")->fetchColumn();
-//echo $q;
-
-$t = $q-$b;
-
-echo $t;
+?>
+<form method="post" action="#">
+   <p>
+       <label for="pays">immatriculation </label><br />
+       <select name="pays" id="pays">
+<?php
+$t = $bdd->query("SELECT * FROM vehicles");
+while ($r = $t->fetch())
+{
+	?>
+           <option value="immat"><?= str_replace('"', '',$r['immatriculation']);?></option>
+    
+  <?php
+}
+?>     
+</select>
+   </p>
+</form>

@@ -30,6 +30,8 @@ if(!isset($_SESSION['name']))
 	}
 	if($ident->getCoplevel(1))
 	{
+		
+
 		$q = $bdd->prepare("SELECT * FROM rapport_int WHERE id = :id");
 		$q->execute(array('id'=> $_GET["id"]));
 		while($r = $q->fetch())

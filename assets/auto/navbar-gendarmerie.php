@@ -34,7 +34,14 @@
     </ul>
 
     
-
+     <!-- <ul class="navbar-nav">
+    <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" href="#" title="Notification (Not active)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <i class="far fa-bell"></i>
+        </a>
+        
+      </li> -->
+      
 
 
     <form action="search.php" method="get" class="form-inline my-2 my-lg-0">
