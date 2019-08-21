@@ -136,8 +136,9 @@ if(!isset($_SESSION['name']))
 			if(isset($_GET['continue']))
 			{
 				$moinpoint = htmlspecialchars($_GET['pointsenmoin']);
+				$result = $r['pointsPermis'] - $moinpoint;
 				$q = $bdd->prepare("UPDATE players SET pointsPermis = :pointsPermis WHERE pid = :pid");
-				$q->bindValue(":pointsPermis", $moinpoint);
+				$q->bindValue(":pointsPermis", $result);
 				$q->bindValue(":pid", $_GET["pid"]);
 				$q->execute();
 
