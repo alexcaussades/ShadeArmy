@@ -55,11 +55,11 @@ require 'assets/class/ident.php';
 <?php 
 function action()
 {
-		//$id = $i["id"];
-		$id = "1";
+		$id = $_SESSION["id"];
 		global $bdd;
-		$q = $bdd->prepare("SELECT id, motif, date FROM motif_users WHERE :id_auth ORDER BY id DESC LIMIT 0, 10");
-		$q->execute(array(":id_auth" => $id));
+		$q = $bdd->prepare("SELECT * FROM motif_users WHERE id_auth = :id_auth ORDER BY id DESC LIMIT 0, 10");
+		$q->bindValue(":id_auth", $id);
+		$q->execute();
 			while($t = $q->fetch())
 			{
 				?>

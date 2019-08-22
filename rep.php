@@ -143,7 +143,7 @@ if(!isset($_SESSION['name']))
         <div class="col-sm-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="far fa-address-book"></i> Recherche</h5>
+              <h5 class="card-title"><i class="far fa-address-book"></i> Rapport d'intervention</h5>
               <p class="card-text"></p>
               <a href="./search.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
             </div>
@@ -192,7 +192,7 @@ if(!isset($_SESSION['name']))
         <div class="col-sm-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-plus-circle"></i> Rapport intervention adm </h5>
+              <h5 class="card-title"><i class="fas fa-plus-circle"></i> Rapport d'intervention adm </h5>
               <p class="card-text"></p>
               <a href="intervention.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
             </div>

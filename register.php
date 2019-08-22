@@ -3,9 +3,11 @@ require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/ident.php';
 //require 'assets/class/bdd.php';
-
+require 'assets/class/mail.php';
+use ShadeLife\mail;
 use ShadeLife\ident;
 $ident = new ident;
+$mail = new mail;
 
 ?>
 <link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -55,38 +57,55 @@ if(isset($_POST['pid']) && !empty($_POST["pid"]) && isset($_POST["email"]) && !e
 		$email = htmlentities(trim($_POST['email']));
 		if (preg_match("#^[7][6][5][6]#", $pid))
 		{
-			global $bdd;
-			$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
-			$q->execute(array("pid" => $pid));
-			while ($r = $q->fetch())
-			{
-				$setname = $r['name'];			
-			}
-			if(isset($setname))
-			{
-			        $pass = $ident->register();
-					$newpass = hash("SHA512", $pass);
-					if(isset($setname) && isset($newpass) && isset($email) && isset($pid))
-					{
-						global $bdd;
-						$t = $bdd->prepare("INSERT INTO auth (login, mdp, email, pid, creattime, lastseen) VALUES (:login, :mdp, :email, :pid, NOW(), NOW())");
-						$t->bindParam(':login', $setname);
-						$t->bindParam(":mdp", $newpass);
-						$t->bindParam(":email", $email);
-						$t->bindParam(":pid", $pid);
-						$t->execute();
-						?>
-						<div class="container">
-						<div class="alert alert-success" role="alert">
-  						<p>Etape: 2 </p>
-						Bonjour <?= $setname; ?>, votre compte à bien était crée !<br /> Merci de verifier votre compte email: <?= $email; ?>.
-						</div>
-						</div>
-						<?php
-						$messagemail = "Votre login : ".$setname.". Nouveaux mot de passe : " .$pass ." votre compte et activer ";
-						mail($email, "création de votre compte", $messagemail);
-					}
-			}		
+			$reponse = $bdd->query('SELECT * FROM auth WHERE pid='.$pid.'');
+			if ($donnees = $reponse->fetch())
+    		{
+					$message = 'Il y a déjà une personne qui utilise déjà ces informations comme identification !';
+					?>
+					<div class="container">
+					<div class="row">
+						<div class="alert alert-danger" role="alert">
+						<?= $message; ?>
+					</div>
+					</div>
+					
+						
+					<?php
+					die();
+			}else{
+							global $bdd;
+							$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
+							$q->execute(array("pid" => $pid));
+							while ($r = $q->fetch())
+							{
+								$setname = $r['name'];			
+							}
+							if(isset($setname))
+							{
+								$pass = $ident->register();
+								$newpass = hash("SHA512", $pass);
+								if(isset($setname) && isset($newpass) && isset($email) && isset($pid))
+								{
+									global $bdd;
+									$t = $bdd->prepare("INSERT INTO auth (login, mdp, email, pid, creattime, lastseen) VALUES (:login, :mdp, :email, :pid, NOW(), NOW())");
+									$t->bindParam(':login', $setname);
+									$t->bindParam(":mdp", $newpass);
+									$t->bindParam(":email", $email);
+									$t->bindParam(":pid", $pid);
+									$t->execute();
+										?>
+										<div class="container">
+										<div class="alert alert-success" role="alert">
+										<p>Etape: 2 </p>
+										Bonjour <?= $setname; ?>, votre compte à bien était crée !<br /> Merci de verifier votre compte email: <?= $email; ?>.
+										</div>
+										</div>
+										<?php
+										//$messagemail = "Votre login : ".$setname.". Nouveaux mot de passe : " .$pass ." votre compte et activer ";
+										$mail->emailactivation($email, $setname, $pass);
+								}
+							}
+					}		
 			}else {
 			?>
 			<div class="alert alert-danger" role="alert">

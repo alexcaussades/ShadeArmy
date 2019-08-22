@@ -17,10 +17,8 @@ $ident = new ident;
 
 <link rel="stylesheet" href="<?= cssuri(); ?>index.css">
 <div class="alert alert-danger" role="alert">
- En cour de création ! <a href="mailto:<?= MAILDEV; ?>">contacter un administrateur</a> !
- La création du compte et la modification du mot de passe sont opérationnelles | En phase Alpha actuellement !
- <li> Une récriture des envoie d'e-mail est actuellement en cours </li>
- <li> Création des rapports d'intervention </li> 
+ En cour de création ! <a href="mailto:<?= MAILDEV; ?>">contacter un administrateur</a> ! | En phase Alpha actuellement !
+  
 </div>
 
 <div class="bandeau">
