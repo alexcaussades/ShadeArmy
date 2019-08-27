@@ -96,9 +96,9 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><i class="far fa-address-book"></i> Déclaration de maison</h5>
+        <h5 class="card-title"><i class="far fa-address-book"></i> Déclaration de maison <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
-        <a href="#" class="btn btn-success disabled"><i class="fas fa-share"></i> Go</a>
+        <a href="./declar-house.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
       </div>
     </div>
   </div>
@@ -106,9 +106,9 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-clipboard"></i> Déclaration de Véhicule  </h5>
+        <h5 class="card-title"><i class="fas fa-clipboard"></i> Déclaration de Véhicule <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
-        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
+        <a href="declar_vhl.php" ><button class="btn btn-success"><i class="fas fa-share"></i> Go</button></a>
       </div>
   </div>
   </div>

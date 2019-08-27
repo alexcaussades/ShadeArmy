@@ -3,6 +3,18 @@
 	margin-top: 30px;
 }
 
+.impots{
+	margin-top: 130px;
+
+}
+
+.intt{
+	display: flex;
+	float: right;
+	/* margin-top: 50px;
+	height: 50%; */
+}
+
 #wanted{
 	background-image: url("../img/wanted.png");
 	/* width: 10%;
