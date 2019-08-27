@@ -67,7 +67,7 @@ if(!isset($_SESSION['name']))
           <div>Grade : <?= $bluefort->displayCopLevel($_SESSION['coplevel']); ?> <br>
 			    information importante :</div>
           <br>
-          <div><?= $bluefort->GetPlayerswanted();?>
+          <div><?= $bluefort->GetPlayerswanted()." ".$bluefort->GetPlayersvhl();?>
           <?php
         }
         if($ident->getCoplevel(9))
@@ -117,9 +117,9 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-clipboard"></i> Déclaration de vol de voiture</h5>
+        <h5 class="card-title"><i class="fas fa-clipboard"></i> Carjacking</h5>
         <p class="card-text"></p>
-        <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
+        <a href="carjacking.php" ><button class="btn btn-success"><i class="fas fa-share"></i> Go</button></a>
       </div>
     </div>
   </div>

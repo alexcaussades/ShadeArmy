@@ -178,13 +178,14 @@ if(!isset($_SESSION['name']))
 								$insert_time = htmlspecialchars($_GET['insert_time']);
 								$immatriculation_vhl = htmlspecialchars($_GET['immatriculation_vhl']);
 
-								$q = $bdd->prepare("INSERT INTO info_vehicules_players(pid,	id_vhl, side_vhl, classname_vhl, type_vhl, immatriculation_vhl, achat_date_vhl, date) VALUES(:pid, :id_vhl, :side_vhl, :classname_vhl, :type_vhl, :immatriculation_vhl, :achat_date_vhl, NOW())");
+								$q = $bdd->prepare("INSERT INTO info_vehicules_players(pid,	id_vhl, side_vhl, classname_vhl, type_vhl, immatriculation_vhl, achat_date_vhl, recherche_vhl, date) VALUES(:pid, :id_vhl, :side_vhl, :classname_vhl, :type_vhl, :immatriculation_vhl, :achat_date_vhl, :recherche_vhl, NOW())");
 								$q->bindValue("pid", $_SESSION['pid']);
 								$q->bindValue("id_vhl", $id);
 								$q->bindValue("side_vhl", $side);
 								$q->bindValue("classname_vhl", $classname);
 								$q->bindValue("type_vhl", $type);
 								$q->bindValue("immatriculation_vhl", $immatriculation_vhl);
+								$q->bindValue("recherche_vhl", "non");
 								$q->bindValue("achat_date_vhl", $insert_time);
 								$q->execute();
 
@@ -231,7 +232,7 @@ if(!isset($_SESSION['name']))
 			}
 		}
 			else{
-				$message = "Actuellement, vous ne possédez pas de maison supplémentaire sur le serveur.";
+				$message = "Actuellement, vous ne possédez pas de véhicule supplémentaire sur le serveur.";
 				?>
 				<meta http-equiv="refresh" content="5 ; url=rep.php">	
 				<div class="info">

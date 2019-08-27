@@ -24,7 +24,7 @@ session_start();
         foreach($req as $r){
         ?>   
 				<tr>
-				<th scope="row"><?= htmlspecialchars(str_replace('"','',$r['immatriculation'])); ?> </th>
+				<th scope="row"><?= htmlspecialchars(str_replace('"','',$r['immatriculation'])); ?></th> <!-- verif -->
 				<th scope="row"><?= htmlspecialchars($r['classname']);?></th>
 				<th scope="row"><?= htmlspecialchars($r['name']);?></th>
 				<th scope="row"><a href="amende-car-creat.php?pid=<?= htmlspecialchars($r['pid']);?>&id=<?= htmlspecialchars($r['id']);?>&immat=<?= htmlspecialchars(str_replace('"','',$r['immatriculation'])); ?>"><button type="button" class="btn btn-dark">Crée une amende</button></a></th>

@@ -89,6 +89,34 @@ if(!isset($_SESSION['name']))
 			<div class="container">
 			<div class="row">
 			<div class="col-sm-12">
+			<?php
+			$getid	= $_GET['id'];
+			$q = $bdd->query("SELECT * FROM info_vehicules_players WHERE id_vhl = ".$getid."");
+			//$q->fetch();
+			while($r = $q->fetch())
+			{
+				if($r['id_vhl'] == $getid)
+				{
+					?>
+					<div>
+					<i class="fas fa-check-circle"></i> vehicule enregistrer au prêt de l'état
+					</div>
+					<?php
+				}
+			}
+
+			$q = $bdd->query("SELECT * FROM info_vehicules_players WHERE id_vhl = ".$getid."");
+			//$q->fetch();
+			while($r = $q->fetch())
+			{
+				if($r['recherche_vhl'] == "oui")
+				{
+					?>
+					<button type="button" class="btn btn-warning">ATTENTION CE VHL SUR LA LISTE DES VOLS</button> 
+					<?php
+				}
+			}
+			?>
 			<form action="#" method="get">
 			<label for="">Somme a payer pour l'amende</label>
 			<div class="input-group mb-3">

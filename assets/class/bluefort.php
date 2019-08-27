@@ -104,6 +104,19 @@ class BlueFort extends Players
 		}
 	}
 
+	public function GetPlayersvhl()
+	{
+		global $bdd;
+		$active ="on";
+		$q = $bdd->query("SELECT count(*) FROM info_vehicules_players WHERE recherche_vhl = 'oui'")->fetchColumn();
+		if($q > 0)
+		{
+			?>
+			<a href="#"><button type="button" class="btn btn-warning">vol de voiture <span class="badge badge-light"><?= $q;?></span></button></a>
+			<?php
+		}
+	}
+
 	public function GetplayersCasierView()
 	{
 		global $bdd;
@@ -271,6 +284,21 @@ class BlueFort extends Players
 			<i class="fas fa-star"></i>
 			<?php
 		}
+	}
+
+	public function GetVerifVHL($value)
+	{
+		global $bdd;
+		$q = $bdd->query("SELECT * FROM info_vehicules_players WHERE id_vhl = ".$value."");
+		$r = $q->fetch();
+		if ($r["id_vhl"] != $value)
+		{
+			
+		}else{
+			?>
+			<i class="fas fa-check-circle"></i>
+			<?php
+		}	
 	}
 	
 }
