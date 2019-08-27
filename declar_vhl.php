@@ -137,7 +137,7 @@ if(!isset($_SESSION['name']))
 							<div>N° immatriculation : <?= str_replace('"','',$r['immatriculation']); ?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Date de première immatriculation: <?= $r['insert_time'];?></div>
 							<div>Type: <?= $r['type']; ?> &nbsp; Service : <?=$r['side'];?> &nbsp; Série : <?=$r['classname'];?></div>
 							<br>
-							<div> Est le proprotaire du vheicule </div>
+							<div> Est le proprotaire du véhicule </div>
 							<div><?= $r['name'];?> </div>
 							<br>
 							<?php

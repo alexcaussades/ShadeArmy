@@ -28,7 +28,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="profile.php">Profil</a>
-          <a class="dropdown-item" href="systeme.php?action=logout">Disconnect</a>
+          <a class="dropdown-item" href="logout.php?action=logout">Disconnect</a>
         </div>
       </li>
       </ul>

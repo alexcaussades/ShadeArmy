@@ -112,7 +112,7 @@ class BlueFort extends Players
 		if($q > 0)
 		{
 			?>
-			<a href="#"><button type="button" class="btn btn-warning">vol de voiture <span class="badge badge-light"><?= $q;?></span></button></a>
+			<a href="cr_vhl_de.php"><button type="button" class="btn btn-warning">vol de voiture <span class="badge badge-light"><?= $q;?></span></button></a>
 			<?php
 		}
 	}

@@ -96,7 +96,7 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><i class="far fa-address-book"></i> Déclaration de maison <span class="badge badge-secondary">New</span></h5>
+        <h5 class="card-title"> Déclaration de maison <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
         <a href="./declar-house.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
       </div>
@@ -106,7 +106,7 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-clipboard"></i> Déclaration de Véhicule <span class="badge badge-secondary">New</span></h5>
+        <h5 class="card-title"></i> Déclaration de Véhicule <span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
         <a href="declar_vhl.php" ><button class="btn btn-success"><i class="fas fa-share"></i> Go</button></a>
       </div>
@@ -117,7 +117,7 @@ if(!isset($_SESSION['name']))
   <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-clipboard"></i> Carjacking</h5>
+        <h5 class="card-title"> Vol de véhicule <br><span class="badge badge-secondary">New</span></h5>
         <p class="card-text"></p>
         <a href="carjacking.php" ><button class="btn btn-success"><i class="fas fa-share"></i> Go</button></a>
       </div>
@@ -143,7 +143,7 @@ if(!isset($_SESSION['name']))
         <div class="col-sm-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="far fa-address-book"></i> Rapport d'intervention</h5>
+              <h5 class="card-title"> Rapport d'intervention</h5>
               <p class="card-text"></p>
               <a href="./search.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
             </div>
@@ -154,12 +154,24 @@ if(!isset($_SESSION['name']))
         <div class="col-sm-4">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-clipboard"></i> Les Amendes <span class="badge badge-secondary">New</span></h5>
+              <h5 class="card-title"> Les Amendes <span class="badge badge-secondary">New</span></h5>
               <p class="card-text"></p>
               <a href="amende.php" ><button class="btn btn-success"><i class="fas fa-share"></i> Go</button></a>
             </div>
           </div>
         </div>
+
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">CR Vols de voiture <span class="badge badge-secondary">New</span></h5>
+              <p class="card-text"></p>
+              <a href="cr_vhl_de.php" ><button class="btn btn-success"><i class="fas fa-share"></i> Go</button></a>
+            </div>
+          </div>
+        </div>
+
+
       </div>
       </div>
         </div>
@@ -168,6 +180,8 @@ if(!isset($_SESSION['name']))
            
       <?php
   }
+
+  
 
   if($ident->getCoplevel(9))
 	{	
@@ -183,7 +197,7 @@ if(!isset($_SESSION['name']))
         <div class="col-sm-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="far fa-address-book"></i> Recherche</h5>
+              <h5 class="card-title"> Recherche</h5>
               <p class="card-text"></p>
               <a href="./search.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
             </div>
@@ -192,9 +206,19 @@ if(!isset($_SESSION['name']))
         <div class="col-sm-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-plus-circle"></i> Rapport d'intervention adm </h5>
+              <h5 class="card-title"></i> CR d'inter GND </h5>
               <p class="card-text"></p>
               <a href="intervention.php" class="btn btn-success"><i class="fas fa-share"></i> Go</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></i> CR d'inter SDIS </h5>
+              <p class="card-text"></p>
+              <a href="#"> <button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
             </div>
           </div>
         </div>
@@ -202,7 +226,7 @@ if(!isset($_SESSION['name']))
         <div class="col-sm-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-edit"></i></i>ModUser</h5>
+              <h5 class="card-title"> ModUser</h5>
               <p class="card-text"></p>
               <a href="#" ><button class="btn btn-success" disabled="disabled"><i class="fas fa-share"></i> Go</button></a>
             </div>

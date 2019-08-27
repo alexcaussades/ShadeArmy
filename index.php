@@ -18,7 +18,7 @@ $ident = new ident;
 <link rel="stylesheet" href="<?= cssuri(); ?>index.css">
 <div class="alert alert-danger" role="alert">
  En cour de création ! <a href="mailto:<?= MAILDEV; ?>">contacter un administrateur</a> ! | En phase Alpha actuellement !
-  
+  <?= $_SESSION["name"];?>
 </div>
 
 <div class="bandeau">
