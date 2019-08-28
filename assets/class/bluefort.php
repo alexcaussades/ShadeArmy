@@ -167,7 +167,7 @@ class BlueFort extends Players
 		if($q["active"] == 1)
 			{
 				?>
-				<img class="rednotice" src="<?= imguri();?>rednotice.png"  alt="">
+				<img class="rednotice" id="test2" src="<?= imguri();?>rednotice.png"  alt="">
 				<?php
 			}
 		

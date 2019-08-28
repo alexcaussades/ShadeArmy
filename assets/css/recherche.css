@@ -22,9 +22,25 @@
 }
 
 .rednotice{
-	width: 30%;
-	height: 30%;
+	width: 20%;
+	height: 20%;
 	float: right;
+	
+}
+
+#test1{
+	 /* position: absolute; */
+	z-index: 0;
+}
+
+#test2{
+	 position: absolute; 
+	z-index: 9;
+}
+
+#file{
+	
+	margin-top: 10px;
 }
 
 .recherche{
@@ -68,6 +84,16 @@
 .avatar {
 	margin-top: 0px;
 	margin-left: 20px;
+	max-width: 250px;
+	min-width: 80%;
+	
+}
+
+.avatarsansfichier {
+	margin-top: 0px;
+	margin-left: 20px;
+	max-width: 250px;
+	min-width: 250px;
 	
 }
 
