@@ -14,24 +14,7 @@ session_start();
 	$ident = new ident;
 	$bluefort = new bluefort;
 
-	function rr()
-	{
-		$user = (String) trim(htmlspecialchars($_GET['name']));
-        global $bdd;
-        $req = $bdd->prepare("SELECT * FROM players WHERE name LIKE ? LIMIT 10");
-		$req->execute(array("$user%"));
-        foreach($req as $r){
-        ?>   
-				<tr>
-				<th scope="row"><?= htmlspecialchars($r['name']); ?> </th>
-				<th><a href="player.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-dark">Profile</button></a>
-				<a href="rapport.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-primary">Rapport</button></a>
-				<a href="wanted.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="submit" class="btn btn-danger">Wanted</button></a>
-				</th>
-				</tr>
-		<?php 
-	}
-	}
+	
 ?>
 	
 	<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -108,7 +91,24 @@ if(!isset($_SESSION['name']))
 				</tr>
 			</thead>
 			<tbody>
-			<?= rr(); ?>
+			<?php
+				$user = (String) trim(htmlspecialchars($_GET['name']));
+				global $bdd;
+				$req = $bdd->prepare("SELECT * FROM players WHERE name LIKE ? LIMIT 10");
+				$req->execute(array("$user%"));
+				foreach($req as $r){
+				?>   
+						<tr>
+						<th scope="row"><?= htmlspecialchars($r['name']); ?> </th>
+						<th><a href="player.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-dark">Profile</button></a>
+						<a href="rapport.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="button" class="btn btn-primary">Rapport</button></a>
+						<a href="wanted.php?pid=<?= htmlspecialchars($r['pid']);?>"><button type="submit" class="btn btn-danger">Wanted</button></a>
+						</th>
+						</tr>
+				<?php 
+			}
+			
+			?>
     		</tbody>
   			</table>
   	</div>

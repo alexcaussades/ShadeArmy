@@ -66,6 +66,7 @@ if(!isset($_SESSION['name']))
     <div class="col-sm-4">
 	<div>
 	<?php
+	/** recherche l'avatar && wanted sur la bdd  */
 		echo $bluefort->GetPlayersBageWanted();
 		$r = $bdd->query("SELECT count(*) FROM avatar WHERE pid = ".$_GET['pid']."")->fetchColumn();
 		if($r > 0)
@@ -109,11 +110,11 @@ if(!isset($_SESSION['name']))
       <p><strong>Sexe:</strong> Homme</p>
 	  <p><strong>Date de naissance:</strong> <?= $players->getPlayersNaiss(); ?></p>
 	  <p><strong>Taille:</strong> <?= $players->getPlayerstaille(); ?></p>
-	  <p><strong>Numéros CNI:</strong> <?= $players->getpid(); ?></p>
+	  <p><strong>Numéros CNI:</strong> <?= $players->getpid(); ?> <button class="btn btn-secondary btn-sm" data-clipboard-text="<?= $players->getpid(); ?>">copy</button></p>
 	  <br>
 	  <h2>Informations Complémentaires: </h2>
 	  <p><strong>Points sur le permis :</strong> <?= $players->GetPlayersPointspermis() ?></p>
-	  <p><strong>Numéro de téléphone:</strong> <?= $players->GetPlayersNum();?></p>
+	  <p><strong>Numéro de téléphone:</strong> <?= $players->GetPlayersNum();?> <button class="btn btn-secondary btn-sm" data-clipboard-text="<?= $players->getpid(); ?>">copy</button></p>
 	  <p><strong>Derniere connection :</strong> <?= $players->GetPlayersLast_seen();?></p>
     </div>
     <div class="col-sm-4">
@@ -248,3 +249,6 @@ else
 }
 require 'footer.php';
 ?>
+<script>
+new ClipboardJS('.btn');
+</script>

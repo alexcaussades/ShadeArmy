@@ -171,6 +171,16 @@ if(!isset($_SESSION['name']))
           </div>
         </div>
 
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Fréquences <span class="badge badge-secondary">New</span></h5>
+              <p class="card-text"></p>
+              <a href="#" ><button class="btn btn-success" onclick="openWin()"><i class="fas fa-share"></i> Go</button></a>
+            </div>
+          </div>
+        </div>
+
 
       </div>
       </div>

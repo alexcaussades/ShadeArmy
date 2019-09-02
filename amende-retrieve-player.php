@@ -84,7 +84,7 @@ if(!isset($_SESSION['name']))
 				<th scope="row"><?= htmlspecialchars($r['somme']); ?></th>
 				<th scope="row"><?php if($r['paid'] == 1){echo 'oui';}else{ echo 'non';}?></th>
 				<th scope="row"><?= htmlspecialchars($r['date']); ?></th>
-				<th scope="row"><a href="?paid=paid&id=<?= $r['id']?>"><?php if($r['paid'] == 1){}else{ echo 'Payement';}?></a></th>
+				<th scope="row"><a href="?paid=paid&id=<?= $r['id']?>"><?php if($r['paid'] == 1){}else{ echo '<button class="btn btn-danger" type="button">Payement</button>';}?></a></th>
 			</tr>
 			<?php
 			}

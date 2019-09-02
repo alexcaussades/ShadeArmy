@@ -1,4 +1,6 @@
 <?php
+
+
 ?>
 
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
@@ -27,6 +29,11 @@
           <a class="dropdown-item" href="#">Favori</a>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="./messagerie.php">Messagerie <span class="sr-only">(current)</span></a>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link" href="https://www.arma.shadearmy.fr/">Forum <span class="sr-only">(current)</span></a>
       </li>
