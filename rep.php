@@ -8,35 +8,34 @@ require 'assets/class/players.php';
 require 'assets/class/impot.php';
 require 'assets/class/ident.php';
 require 'assets/class/bluefort.php';
+require 'assets/class/auth.php';
 
+use ShadeLife\auth;
 use ShadeLife\Players;
 use ShadeLife\Impots;
 use ShadeLife\ident;
 use ShadeLife\BlueFort;
+
 $ident = new ident;
 $bluefort = new bluefort;
+
+/** Nouvelle identification systeme */
+auth::connection();
+
 ?>
 <link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
 <?php
 
 
-if(!isset($_SESSION['name']))
-{
-	?>
-	<script>
-     	window.location.replace("index.php");
-    </script>
-	<?php
-}else
-{
-    if($ident->getCoplevel(1))
-        {
-          /** NAVBAR GENDARMERIE */
-          require 'assets/auto/navbar-gendarmerie.php';
-        }else{
-          /** NAVBAR civil */
-          require 'assets/auto/navbar.php';
-        }
+
+  if($ident->getCoplevel(1))
+  {
+    /** NAVBAR GENDARMERIE */
+    require 'assets/auto/navbar-gendarmerie.php';
+  }else{
+    /** NAVBAR civil */
+    require 'assets/auto/navbar.php';
+  }
 
 	?>
 		<div class="bandeau">
@@ -252,7 +251,7 @@ if(!isset($_SESSION['name']))
   }
 
 
-}
+
 
 require 'footer.php';
 ?>
