@@ -12,7 +12,7 @@ class BlueFort extends Players
 
 
 
-	 public function displayCopLevel($rank)
+	 public static function displayCopLevel($rank)
 	 {
 		$ranks = array( 0 => null,
 						1 => '1ère Classe',
@@ -30,7 +30,7 @@ class BlueFort extends Players
 	}
 	
 	
-	public function Displaylevel($level)
+	public static function Displaylevel($level)
 	{
 		
 		if($level != 0)
@@ -81,7 +81,7 @@ class BlueFort extends Players
 	}
 
 
-	public function GetPlayersCasier()
+	public static function GetPlayersCasier()
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT COUNT(*) AS pid FROM casier_jud WHERE pid = ".$this->pid."")->fetchColumn();
@@ -117,7 +117,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public function GetplayersCasierView()
+	public static function GetplayersCasierView()
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT COUNT(*) AS pid FROM casier_jud WHERE pid = ".$this->pid."")->fetchColumn();
@@ -160,7 +160,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public function GetPlayersBageWanted()
+	public static function GetPlayersBageWanted()
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT * FROM wantedP WHERE active = 1 AND pid = ".$this->pid."")->fetchColumn();
@@ -174,7 +174,7 @@ class BlueFort extends Players
 		
 	}
 
-	public function GetPlayersBageWantedMini()
+	public static function GetPlayersBageWantedMini()
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT * FROM wantedP WHERE active = 1 AND pid = ".$this->pid."")->fetchColumn();
@@ -188,7 +188,7 @@ class BlueFort extends Players
 		
 	}
 
-	public function GetMaqueLu()
+	public static function GetMaqueLu()
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT * FROM rapport_int_lue WHERE pid = ".$_SESSION["pid"]." AND rapport_id = ".$_GET["id"]."")->fetchColumn();
@@ -214,7 +214,7 @@ class BlueFort extends Players
 			<?php	
 	}
 
-	public function GetPlayersrapportfav()
+	public static function GetPlayersrapportfav()
 	{
 		global $bdd;
 		$active ="on";
@@ -227,7 +227,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public function SetRapportFavory()
+	public static function SetRapportFavory()
 	{
 		$id_rapport = $_GET['id'];
 		global $bdd;
@@ -254,7 +254,7 @@ class BlueFort extends Players
 		
 	}
 
-	public function GetMarqueLuInterventionTableau($value)
+	public static function GetMarqueLuInterventionTableau($value)
 	{
 		global $bdd;
 		$t = $bdd->query("SELECT * FROM rapport_int_lue join rapport_int WHERE rapport_int_lue.rapport_id = rapport_int.id AND rapport_int_lue.pid = ".$_SESSION["pid"]." AND rapport_int_lue.rapport_id = ".$value."");
@@ -270,7 +270,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public function GetMarqueFavoryInterventionTableau($value)
+	public static function GetMarqueFavoryInterventionTableau($value)
 	{
 		global $bdd;
 		$t = $bdd->query("SELECT * FROM rapport_int_fav join rapport_int WHERE rapport_int_fav.id_rapport = rapport_int.id AND rapport_int_fav.pid = ".$_SESSION["pid"]." AND rapport_int_fav.id_rapport = ".$value."");
@@ -286,7 +286,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public function GetVerifVHL($value)
+	public static function GetVerifVHL($value)
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT * FROM info_vehicules_players WHERE id_vhl = ".$value."");

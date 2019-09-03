@@ -1,29 +1,25 @@
 <?php 
 session_start();
-	require 'assets/class/bdd.php';
-	require 'assets/auto/header.php';
-	require 'assets/auto/function.php';
-	require 'assets/class/players.php';
-	require 'assets/class/impot.php';
-	require 'assets/class/ident.php';
-	require 'assets/class/bluefort.php';
-	require 'assets/class/auth.php';
 
-use ShadeLife\auth;
-use ShadeLife\Players;
+
+require 'autoload.php';
+
+	use ShadeLife\auth;
+	use ShadeLife\Players;
 	use ShadeLife\Impots;
 	use ShadeLife\ident;
 	use ShadeLife\BlueFort;
-	$ident = new ident;
-	$bluefort = new bluefort;
+	
 
 	
 ?>
 	
 	<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
 <?php
+
 auth::connection();
 auth::AuthGendarmerie();
+
 	if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';

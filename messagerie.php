@@ -1,21 +1,13 @@
 <?php 
 session_start();
-	require 'assets/class/bdd.php';
-	require 'assets/auto/header.php';
-	require 'assets/auto/function.php';
-	require 'assets/class/players.php';
-	require 'assets/class/ident.php';
-	require 'assets/class/bluefort.php';
-	require 'assets/class/shadeLife.php';
-	require 'assets/class/auth.php';
+require 'autoload.php';
+
 use ShadeLife\auth;
 use ShadeLife\Players;
 	use ShadeLife\ident;
 	use ShadeLife\BlueFort;
 	use ShadeLife\ShadeLife;
-	$clients = new ShadeLife;
-	$ident = new ident;
-	$bluefort = new bluefort;
+	
 	ini_set('display_errors', 1); 
 	error_reporting(E_ALL); 
 	?>
@@ -89,7 +81,7 @@ if(isset($_GET['message']))
 	<div class="col">
 		<div class="btn-group-vertical align-self-start" role="group" aria-label="Vertical button group">
 		<button type="button" class="btn btn-dark" onclick="compmessage()">Nouveau message</button>
-		<button class="btn btn-light" onclick="repmessage()" type="button">Boîte de réception <?= $clients->GetMessage();?></button>
+		<button class="btn btn-light" onclick="repmessage()" type="button">Boîte de réception <?= ShadeLife::GetMessage();?></button>
 		<button class="btn btn-light" onclick="sendmessage()" type="button">Messages envoyés</button>
 		</div>
 	</div>

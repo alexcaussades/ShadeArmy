@@ -1,9 +1,8 @@
 <?php
-require 'assets/auto/header.php';
-require 'assets/auto/function.php';
-require 'assets/class/ident.php';
+require 'autoload.php';
+
  use ShadeLife\ident;
-$ident = new ident;
+
 
 ?>
 <link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -35,7 +34,7 @@ if(!empty($_GET['action']) && $_GET["action"] === "resetpass")
 </div>
   <?php
 
- echo $ident->resetmdp();
+ echo ident::resetmdp();
 }
 
 

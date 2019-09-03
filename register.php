@@ -1,13 +1,10 @@
 <?php
-require 'assets/auto/header.php';
-require 'assets/auto/function.php';
-require 'assets/class/ident.php';
-//require 'assets/class/bdd.php';
-require 'assets/class/mail.php';
+require 'autoload.php';
+
 use ShadeLife\mail;
 use ShadeLife\ident;
-$ident = new ident;
-$mail = new mail;
+
+
 
 ?>
 <link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -82,7 +79,7 @@ if(isset($_POST['pid']) && !empty($_POST["pid"]) && isset($_POST["email"]) && !e
 							}
 							if(isset($setname))
 							{
-								$pass = $ident->register();
+								$pass = ident::register();
 								$newpass = hash("SHA512", $pass);
 								if(isset($setname) && isset($newpass) && isset($email) && isset($pid))
 								{
@@ -102,7 +99,7 @@ if(isset($_POST['pid']) && !empty($_POST["pid"]) && isset($_POST["email"]) && !e
 										</div>
 										<?php
 										//$messagemail = "Votre login : ".$setname.". Nouveaux mot de passe : " .$pass ." votre compte et activer ";
-										$mail->emailactivation($email, $setname, $pass);
+										mail::emailactivation($email, $setname, $pass);
 								}
 							}
 					}		

@@ -4,14 +4,10 @@ session_start();
  * Importation des functions et des class 
  */
 
-require 'assets/auto/header.php';
-require 'assets/auto/function.php';
-//require 'vendor/autoload.php';
-require 'assets/class/ident.php';
-require 'assets/class/define.php';
+require 'autoload.php';
 use ShadeLife\ident;
 
-$ident = new ident;
+
 
 ?>
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
@@ -70,7 +66,7 @@ $ident = new ident;
 <?php 
 if (isset($_POST['login']) && isset($_POST['passworld']))
 {
-  $ident->login();
+  ident::login();
 }
 ?>
 

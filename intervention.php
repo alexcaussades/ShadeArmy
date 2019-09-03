@@ -1,14 +1,7 @@
 <?php
 session_start();
 
-require 'assets/auto/header.php';
-require 'assets/auto/function.php';
-require 'assets/class/bdd.php';
-require 'assets/class/players.php';
-require 'assets/class/impot.php';
-require 'assets/class/ident.php';
-require 'assets/class/bluefort.php';
-require 'assets/class/auth.php';
+require 'autoload.php';
 
 
 use ShadeLife\auth;
@@ -16,8 +9,7 @@ use ShadeLife\Players;
 use ShadeLife\Impots;
 use ShadeLife\ident;
 use ShadeLife\BlueFort;
-$ident = new ident;
-$bluefort = new bluefort;
+
 
 auth::connection();
 auth::AuthGendarmerie();
@@ -67,7 +59,7 @@ auth::AuthGendarmerie();
 								
 				?>
 				<tr>
-				<th scope="row"><?= htmlspecialchars($r['typerap'])?> <?php $bluefort->GetMarqueLuInterventionTableau($r['id']); ?> <?php $bluefort->GetMarqueFavoryInterventionTableau($r['id']); ?></th>
+				<th scope="row"><?= htmlspecialchars($r['typerap'])?> <?php bluefort::GetMarqueLuInterventionTableau($r['id']); ?> <?php bluefort::GetMarqueFavoryInterventionTableau($r['id']); ?></th>
 				<th scope="row"><?= htmlspecialchars($r['officier']); ?></th>
 				
 				<th scope="row"><?= htmlspecialchars($r['dateinter']); ?></th>

@@ -9,7 +9,7 @@ class ShadeLife
 		
 	}
 
-	public function GetMessage()
+	public static function GetMessage()
 	{
 		global $bdd;
 		$active ="on";

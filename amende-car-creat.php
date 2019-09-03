@@ -1,21 +1,13 @@
 <?php
 session_start();
 
-require 'assets/auto/header.php';
-require 'assets/auto/function.php';
-require 'assets/class/bdd.php';
-require 'assets/class/players.php';
-require 'assets/class/impot.php';
-require 'assets/class/ident.php';
-require 'assets/class/bluefort.php';
-require 'assets/class/auth.php';
+require 'autoload.php';
 
-use ShadeLife\Impots;
+
 use ShadeLife\ident;
 use ShadeLife\BlueFort;
 use ShadeLife\auth;
-$ident = new ident;
-$bluefort = new bluefort;
+
 
 /** Nouvelle nomenclature */
 
@@ -24,11 +16,11 @@ auth::AuthGendarmerie();
 
 
 
-	if($ident::getCoplevel(1))
+	if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';
 	}
-	if($ident::getCoplevel(1))
+	if(ident::getCoplevel(1))
 	{		
 		?>
 		<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">

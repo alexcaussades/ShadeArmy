@@ -1,22 +1,14 @@
 <?php
 session_start();
 
-require 'assets/auto/header.php';
-require 'assets/auto/function.php';
-
-require 'assets/class/players.php';
-require 'assets/class/bluefort.php';
-require 'assets/class/ident.php';
-require 'assets/class/auth.php';
+require 'autoload.php';
 
 use ShadeLife\auth;
 use ShadeLife\Players;
 use ShadeLife\ident;
 use ShadeLife\BlueFort;
-$ident = new ident;
-$player = new Players;
-$bleufort = new BlueFort;
 
+$player = new Players;
 
 auth::connection();
 auth::AuthGendarmerie();
@@ -36,8 +28,8 @@ if(ident::getCoplevel(1))
 		while($r = $q->fetch())
 		{			
 			$_GET["pid"] = $r['playerpid'];
-					$player->regexPid();
-					$player->getInfo();
+			$player->regexPid();
+			$player->getInfo();
 			
 			?>
 			<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -78,9 +70,9 @@ if(ident::getCoplevel(1))
 				</div></div>
 
 				<!-- button maquer comme lu -->
-				<?= $bleufort->GetMaqueLu();?>
+				<?= BlueFort::GetMaqueLu();?>
 				<br>
-				<?= $bleufort->SetRapportFavory();?>
+				<?= BlueFort::SetRapportFavory();?>
 				</div>
 				
 			</div> <!--fin de balise col-sm-4 -->
