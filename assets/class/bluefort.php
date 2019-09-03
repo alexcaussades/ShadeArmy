@@ -91,7 +91,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public function GetPlayerswanted()
+	public static function GetPlayerswanted()
 	{
 		global $bdd;
 		$active ="on";
@@ -104,7 +104,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public function GetPlayersvhl()
+	public static function GetPlayersvhl()
 	{
 		global $bdd;
 		$active ="on";
@@ -203,7 +203,7 @@ class BlueFort extends Players
 			}
 	}
 
-	public function GetPlayersrapportnonlu()
+	public static function GetPlayersrapportnonlu()
 	{
 		global $bdd;
 		$b = $bdd->query("SELECT COUNT(*) AS id FROM rapport_int_lue WHERE pid = ".$_SESSION["pid"]."")->fetchColumn();

@@ -8,12 +8,11 @@ session_start();
 	require 'assets/class/bluefort.php';
 	require 'assets/class/auth.php';
 
-use ShadeLife\auth;
-use ShadeLife\Players;
+	use ShadeLife\auth;
+	use ShadeLife\Players;
 	use ShadeLife\ident;
 	use ShadeLife\BlueFort;
-	$ident = new ident;
-	$bluefort = new bluefort;
+	
 	ini_set('display_errors', 1); 
 	error_reporting(E_ALL); 
 	?>
@@ -49,11 +48,11 @@ auth::AuthGendarmerie();
 
 	<div class="garde" id="myForm">
 	<div id="myForm"><h5>Infos serveur :</h5></div>
-	<?= $bluefort->GetPlayerswanted()." ".$bluefort->GetPlayersvhl();?>
+	<?= bluefort::GetPlayerswanted()." ".bluefort::GetPlayersvhl();?>
 	<?php
-	if($ident->getCoplevel(9))
+	if(ident::getCoplevel(9))
         {
-          echo $bluefort->GetPlayersrapportnonlu();
+          echo bluefort::GetPlayersrapportnonlu();
 		}
 	?>
 	</div>
@@ -95,7 +94,7 @@ if(isset($_GET['messagephrase']))
 				<tr>
 				<th scope="col">Fréquence Radio</th>
 				<?php
-				if($ident->getCoplevel(9))
+				if(ident::getCoplevel(9))
 				{
 					?>
 					<th scope="col">Action</th>
@@ -114,7 +113,7 @@ if(isset($_GET['messagephrase']))
 						<tr>
 						<th scope="row">GND1 : <?= htmlspecialchars($r['freq1']); ?> MHz <button class="btn btn-secondary btn-sm" data-clipboard-text="<?= htmlspecialchars($r['freq1']); ?>">copy</button></th>
 						<?php
-						if($ident->getCoplevel(9))
+						if(ident::getCoplevel(9))
 						{
 							?><th>
 						<form action="#" method="post">
@@ -134,7 +133,7 @@ if(isset($_GET['messagephrase']))
 						<th scope="row">GND2 : <?= htmlspecialchars($r['freq2']); ?> MHz <button class="btn btn-secondary btn-sm" data-clipboard-text="<?= htmlspecialchars($r['freq2']); ?>">copy</button></th>
 						
 						<?php
-						if($ident->getCoplevel(9))
+						if(ident::getCoplevel(9))
 						{
 							?><th>
 						<form action="#" method="post">
@@ -155,7 +154,7 @@ if(isset($_GET['messagephrase']))
 						<th scope="row">GND-MDP : <?= htmlspecialchars($r['freqpassphrase']); ?></th>
 						
 						<?php
-						if($ident->getCoplevel(9))
+						if(ident::getCoplevel(9))
 						{
 							?><th>
 						<form action="#" method="post">
