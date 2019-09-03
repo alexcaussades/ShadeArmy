@@ -3,10 +3,13 @@ session_start();
 
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
-require 'assets/class/bdd.php';
+
 require 'assets/class/players.php';
 require 'assets/class/bluefort.php';
 require 'assets/class/ident.php';
+require 'assets/class/auth.php';
+
+use ShadeLife\auth;
 use ShadeLife\Players;
 use ShadeLife\ident;
 use ShadeLife\BlueFort;
@@ -15,20 +18,16 @@ $player = new Players;
 $bleufort = new BlueFort;
 
 
+auth::connection();
+auth::AuthGendarmerie();
 
-if(!isset($_SESSION['name']))
-{
-	?>
-	<script>
-     	window.location.replace("index.php");
-    </script>
-	<?php
-}else
-{ if($ident->getCoplevel(1))
+
+
+if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';
 	}
-	if($ident->getCoplevel(1))
+	if(ident::getCoplevel(1))
 	{
 		
 
@@ -98,7 +97,7 @@ if(!isset($_SESSION['name']))
 			</div> <!-- fin de balise card -->
 
 			<?php
-			if($ident->getCoplevel(9))
+			if(ident::getCoplevel(9))
 			{
 				?>
 					<div class="card shadow-lg p-3 mb-5 bg-white rounded">
@@ -348,4 +347,4 @@ if(!isset($_SESSION['name']))
 	}
 
 
-}require 'footer.php';
+require 'footer.php';

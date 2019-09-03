@@ -1,4 +1,7 @@
 <?php
+
+use ShadeLife\auth;
+
 session_start();
 
 
@@ -8,6 +11,9 @@ require 'assets/class/bdd.php';
 require 'assets/class/players.php';
 require 'assets/class/impot.php';
 require 'assets/class/ident.php';
+require 'assets/class/auth.php';
+
+auth::connection();
 
 ?>
 <link rel="stylesheet" href="<?= cssuri(); ?>index.css">

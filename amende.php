@@ -5,31 +5,30 @@ require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/bdd.php';
 require 'assets/class/players.php';
-require 'assets/class/impot.php';
 require 'assets/class/ident.php';
 require 'assets/class/bluefort.php';
+require 'assets/class/auth.php';
+
 
 use ShadeLife\Players;
 use ShadeLife\Impots;
+
+use ShadeLife\auth;
 use ShadeLife\ident;
 use ShadeLife\BlueFort;
 $ident = new ident;
 $bluefort = new bluefort;
 
-if(!isset($_SESSION['name']))
-{
-	?>
-	<script>
-     	window.location.replace("index.php");
-    </script>
-	<?php
-}else
-{ 
-	if($ident->getCoplevel(1))
+auth::connection();
+auth::AuthGendarmerie();
+
+	if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';
 	}
-	if($ident->getCoplevel(1))
+
+
+	if(ident::getCoplevel(1))
 	{		
 		?>
 		<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -83,6 +82,6 @@ if(!isset($_SESSION['name']))
 			</div>
 			</div>
 		<?php
-	}}
+	}
 
 	require 'footer.php';

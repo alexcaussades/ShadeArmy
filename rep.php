@@ -5,22 +5,18 @@ require 'assets/auto/header.php';
 require 'assets/auto/function.php';
 require 'assets/class/bdd.php';
 require 'assets/class/players.php';
-require 'assets/class/impot.php';
 require 'assets/class/ident.php';
 require 'assets/class/bluefort.php';
 require 'assets/class/auth.php';
 
 use ShadeLife\auth;
-use ShadeLife\Players;
-use ShadeLife\Impots;
 use ShadeLife\ident;
 use ShadeLife\BlueFort;
 
-$ident = new ident;
-$bluefort = new bluefort;
 
 /** Nouvelle identification systeme */
 auth::connection();
+
 
 ?>
 <link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -28,7 +24,8 @@ auth::connection();
 
 
 
-  if($ident->getCoplevel(1))
+
+  if(ident::getCoplevel(1))
   {
     /** NAVBAR GENDARMERIE */
     require 'assets/auto/navbar-gendarmerie.php';
@@ -60,18 +57,18 @@ auth::connection();
         <h5 class="card-title">Bienvenue : <?= $_SESSION["name"]; ?></h5>
         <p class="card-text">
         <?php
-        if($ident->getCoplevel(1))
+        if(ident::getCoplevel(1))
         {
           ?>
-          <div>Grade : <?= $bluefort->displayCopLevel($_SESSION['coplevel']); ?> <br>
+          <div>Grade : <?= bluefort::displayCopLevel($_SESSION['coplevel']); ?> <br>
 			    information importante :</div>
           <br>
-          <div><?= $bluefort->GetPlayerswanted()." ".$bluefort->GetPlayersvhl();?>
+          <div><?= bluefort::GetPlayerswanted()." ".bluefort::GetPlayersvhl();?>
           <?php
         }
-        if($ident->getCoplevel(9))
+        if(ident::getCoplevel(9))
         {
-          echo $bluefort->GetPlayersrapportnonlu()." ".$bluefort->GetPlayersrapportfav();
+          echo bluefort::GetPlayersrapportnonlu()." ".bluefort::GetPlayersrapportfav();
         }
         ?>
 
@@ -130,7 +127,7 @@ auth::connection();
 
 <?php
 
-  if($ident->getCoplevel(1))
+  if(ident::getCoplevel(1))
 	{	
         ?>
         <div class="card segonde shadow-lg p-3 mb-5 bg-white rounded">
@@ -192,7 +189,7 @@ auth::connection();
 
   
 
-  if($ident->getCoplevel(9))
+  if(ident::getCoplevel(9))
 	{	
       ?>
      

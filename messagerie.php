@@ -43,10 +43,10 @@ use ShadeLife\Players;
 
 auth::connection();
 
-	if($ident->getCoplevel(1))
+	if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';
-	}elseif($ident->getCoplevel(5))
+	}elseif(ident::getCoplevel(5))
 	{
 		require 'assets/auto/navbar-gendarmerie.php';
 	} else

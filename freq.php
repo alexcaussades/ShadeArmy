@@ -6,7 +6,10 @@ session_start();
 	require 'assets/class/players.php';
 	require 'assets/class/ident.php';
 	require 'assets/class/bluefort.php';
-	use ShadeLife\Players;
+	require 'assets/class/auth.php';
+
+use ShadeLife\auth;
+use ShadeLife\Players;
 	use ShadeLife\ident;
 	use ShadeLife\BlueFort;
 	$ident = new ident;
@@ -17,19 +20,15 @@ session_start();
 	
 	<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
 <?php
-if(!isset($_SESSION['name']))
-{
-	?>
-	<script>
-     	window.location.replace("index.php");
-    </script>
-	<?php
-}else
-{
-	if($ident->getCoplevel(1))
+
+auth::connection();
+auth::AuthGendarmerie();
+
+
+	if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';
-	}elseif($ident->getCoplevel(5))
+	}elseif(ident::getCoplevel(5))
 	{
 		require 'assets/auto/navbar-gendarmerie.php';
 	} else
@@ -109,7 +108,7 @@ if(isset($_GET['messagephrase']))
 			<?php
 				$req = $bdd->query("SELECT * FROM freq");
 				$r = $req->fetch();
-				if($ident->getCoplevel(1))
+				if(ident::getCoplevel(1))
 				{
 				?>   
 						<tr>
@@ -218,7 +217,7 @@ if(isset($_GET['messagephrase']))
 			</script>
 			<?php
 		}
-}
+
 require 'footer.php';
 
 ?>

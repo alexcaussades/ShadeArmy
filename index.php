@@ -6,6 +6,7 @@ session_start();
 
 require 'assets/auto/header.php';
 require 'assets/auto/function.php';
+//require 'vendor/autoload.php';
 require 'assets/class/ident.php';
 require 'assets/class/define.php';
 use ShadeLife\ident;

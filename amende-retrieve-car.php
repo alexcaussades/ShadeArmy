@@ -8,7 +8,8 @@ require 'assets/class/players.php';
 require 'assets/class/impot.php';
 require 'assets/class/ident.php';
 require 'assets/class/bluefort.php';
-
+require 'assets/class/auth.php';
+use ShadeLife\auth;
 use ShadeLife\Players;
 use ShadeLife\Impots;
 use ShadeLife\ident;
@@ -18,20 +19,14 @@ $bluefort = new bluefort;
 
 
 
-if(!isset($_SESSION['name']))
-{
-	?>
-	<script>
-     	window.location.replace("index.php");
-    </script>
-	<?php
-}else
-{ 
-	if($ident->getCoplevel(1))
+auth::connection();
+auth::AuthGendarmerie();
+
+	if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';
 	}
-	if($ident->getCoplevel(1))
+	if(ident::getCoplevel(1))
 	{		
 		?>
 		<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -98,7 +93,7 @@ if(!isset($_SESSION['name']))
 			</div>
 			<?php
 	}
-		}
+		
 
 		if (isset($_GET['paid'])) 
 		{
@@ -106,4 +101,5 @@ if(!isset($_SESSION['name']))
 			$q = $bdd->prepare("UPDATE amende_vhl SET paid = 1 WHERE id= ".$id." ");
 			$q->execute();
 		}
+		
 require 'footer.php';

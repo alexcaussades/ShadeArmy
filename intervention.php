@@ -8,7 +8,10 @@ require 'assets/class/players.php';
 require 'assets/class/impot.php';
 require 'assets/class/ident.php';
 require 'assets/class/bluefort.php';
+require 'assets/class/auth.php';
 
+
+use ShadeLife\auth;
 use ShadeLife\Players;
 use ShadeLife\Impots;
 use ShadeLife\ident;
@@ -16,20 +19,14 @@ use ShadeLife\BlueFort;
 $ident = new ident;
 $bluefort = new bluefort;
 
-if(!isset($_SESSION['name']))
-{
-	?>
-	<script>
-     	window.location.replace("index.php");
-    </script>
-	<?php
-}else
-{ 
-	if($ident->getCoplevel(1))
+auth::connection();
+auth::AuthGendarmerie();
+
+	if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';
 	}
-	if($ident->getCoplevel(9))
+	if(ident::getCoplevel(9))
 	{		
 		?>
 		<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
@@ -95,14 +92,7 @@ if(!isset($_SESSION['name']))
 	}
 
 
-}
+
 require 'footer.php';
 ?>
 
-<?php
-
-/**
- * 	$t = $bdd->query("SELECT * FROM `rapport_int_lue`join rapport_int WHERE rapport_int_lue.rapport_id = rapport_int.id AND rapport_int_lue.pid = rapport_int.pid AND rapport_int_lue.pid = ".$_SESSION["pid"]."");
-			
- */
-?>

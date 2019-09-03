@@ -8,6 +8,9 @@ require 'assets/class/players.php';
 require 'assets/class/impot.php';
 require 'assets/class/ident.php';
 require 'assets/class/bluefort.php';
+require 'assets/class/auth.php';
+
+use ShadeLife\auth;
 use ShadeLife\Players;
 use ShadeLife\Impots;
 use ShadeLife\ident;
@@ -24,16 +27,9 @@ $players->advance_identity();
 <link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
 
 <?php
-if(!isset($_SESSION['name']))
-{
-	?>
-	<script>
-     	window.location.replace("index.php");
-    </script>
-	<?php
-}else
-{
-	if($ident->getCoplevel(1))
+auth::connection();
+auth::AuthGendarmerie();
+	if(ident::getCoplevel(1))
 	{
   		require 'assets/auto/navbar-gendarmerie.php';
 	}
@@ -112,4 +108,4 @@ if(isset($_GET["confirme"]) == "on" && isset($_GET["pid"]) && isset($_GET["deman
 			</div>
 	<?php
 }
-}require 'footer.php';
+require 'footer.php';

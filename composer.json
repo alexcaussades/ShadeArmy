@@ -1,0 +1,16 @@
+{
+    "name": "alexcaussades/shadearmy",
+    "authors": [
+        {
+            "name": "alexcaussades",
+            "email": "alexcaussades@gmail.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "shadearmy\\" : "assets/class/"
+        }
+    },
+    "require": {}
+}

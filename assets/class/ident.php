@@ -23,6 +23,7 @@ class ident
 	public function __construct()
 	{
 		$this->newpass = $this->generateRandomString();
+		$this->nav = $this->getCoplevel(1);
 		
 	}
 	
@@ -77,6 +78,7 @@ class ident
 				while ($r = $q->fetch())
 				{
 					$_SESSION['coplevel'] = $r['coplevel'];
+					$_SESSION['medlevel'] = $r['medlevel'];
 					?>
 					<script>
 						window.location.replace("rep.php");
@@ -243,19 +245,6 @@ class ident
 				}
 		}
     
-
-	public static function navbar($requirelvl)
-		{
-					
-			if(getCoplevel($requirelvl))
-			{
-			  /** NAVBAR GENDARMERIE */
-			  require 'assets/auto/navbar-gendarmerie.php';
-			}else{
-			  /** NAVBAR civil */
-			  require 'assets/auto/navbar.php';
-			}
-		}
 
 
 

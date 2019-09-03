@@ -20,6 +20,7 @@ $bluefort = new bluefort;
 /** Nouvelle nomenclature */
 
 auth::connection();
+auth::AuthGendarmerie();
 
 
 
