@@ -10,6 +10,8 @@ use ShadeLife\Players;
 	use ShadeLife\BlueFort;
 	
 
+	$players = new Players;
+	$BlueFort = new BlueFort;
 	$players->regexPid();
 	$players->getInfo();
 	$players->advance_identity();
@@ -54,7 +56,8 @@ auth::AuthGendarmerie();
 	<div>
 	<?php
 	/** recherche l'avatar && wanted sur la bdd  */
-		echo $bluefort->GetPlayersBageWanted();
+		echo $BlueFort->GetPlayersBageWanted();
+		
 		$r = $bdd->query("SELECT count(*) FROM avatar WHERE pid = ".$_GET['pid']."")->fetchColumn();
 		if($r > 0)
 		{
@@ -107,7 +110,7 @@ auth::AuthGendarmerie();
     <div class="col-sm-4">
 	<nav class="navbar navbar-dark bg-dark">
   <button type="button" class="btn btn-dark">Imprimier</button> <br /><br />
-  <a href="#addnote"><button type="button" class="btn btn-dark">Judiciaire <span class="badge badge-light"><?= $bluefort->GetPlayersCasier(); ?></span></button></a> <br />
+  <a href="#addnote"><button type="button" class="btn btn-dark">Judiciaire <span class="badge badge-light"><?= $BlueFort->GetPlayersCasier(); ?></span></button></a> <br />
   <a href="wanted.php?pid=<?= htmlspecialchars($players->getpid());?>"><button type="button" class="btn btn-danger">Wanted</button></a></th>
 	</nav>
 
@@ -180,7 +183,7 @@ auth::AuthGendarmerie();
 		<div class="row">
 		
 		<div class="col-sm-12"><h2>Casier Judiciaire</h2>
-		<?= $bluefort->GetplayersCasierView();?>
+		<?= $BlueFort->GetplayersCasierView();?>
 		</div>
 		</div>
 </div>

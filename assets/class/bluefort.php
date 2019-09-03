@@ -81,7 +81,7 @@ class BlueFort extends Players
 	}
 
 
-	public static function GetPlayersCasier()
+	public function GetPlayersCasier()
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT COUNT(*) AS pid FROM casier_jud WHERE pid = ".$this->pid."")->fetchColumn();
@@ -117,7 +117,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public static function GetplayersCasierView()
+	public  function GetplayersCasierView()
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT COUNT(*) AS pid FROM casier_jud WHERE pid = ".$this->pid."")->fetchColumn();
@@ -160,7 +160,7 @@ class BlueFort extends Players
 		}
 	}
 
-	public static function GetPlayersBageWanted()
+	public function GetPlayersBageWanted()
 	{
 		global $bdd;
 		$q = $bdd->query("SELECT * FROM wantedP WHERE active = 1 AND pid = ".$this->pid."")->fetchColumn();

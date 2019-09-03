@@ -4,6 +4,8 @@ require 'autoload.php';
 use ShadeLife\mail;
 use ShadeLife\ident;
 
+$ident = new ident;
+$mail = new mail;
 
 
 ?>
@@ -79,7 +81,7 @@ if(isset($_POST['pid']) && !empty($_POST["pid"]) && isset($_POST["email"]) && !e
 							}
 							if(isset($setname))
 							{
-								$pass = ident::register();
+								$pass = $ident->register();
 								$newpass = hash("SHA512", $pass);
 								if(isset($setname) && isset($newpass) && isset($email) && isset($pid))
 								{
@@ -99,7 +101,7 @@ if(isset($_POST['pid']) && !empty($_POST["pid"]) && isset($_POST["email"]) && !e
 										</div>
 										<?php
 										//$messagemail = "Votre login : ".$setname.". Nouveaux mot de passe : " .$pass ." votre compte et activer ";
-										mail::emailactivation($email, $setname, $pass);
+										$mail->emailactivation($email, $setname, $pass);
 								}
 							}
 					}		
