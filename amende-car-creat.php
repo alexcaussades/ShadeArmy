@@ -12,6 +12,7 @@ use ShadeLife\auth;
 /** Nouvelle nomenclature */
 
 auth::connection();
+auth::veriffLoginUsers();
 auth::AuthGendarmerie();
 
 

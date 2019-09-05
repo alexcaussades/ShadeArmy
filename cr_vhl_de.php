@@ -17,6 +17,7 @@ use ShadeLife\BlueFort;
 
 
 auth::connection();
+auth::veriffLoginUsers();
 
 	
     if(ident::getCoplevel(1))

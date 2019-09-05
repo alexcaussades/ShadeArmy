@@ -18,6 +18,7 @@ require 'autoload.php';
 <?php
 
 auth::connection();
+auth::veriffLoginUsers();
 auth::AuthGendarmerie();
 
 	if(ident::getCoplevel(1))

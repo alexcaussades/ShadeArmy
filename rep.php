@@ -10,7 +10,7 @@ use ShadeLife\BlueFort;
 
 /** Nouvelle identification systeme */
 auth::connection();
-
+auth::veriffLoginUsers();
 
 
 ?>

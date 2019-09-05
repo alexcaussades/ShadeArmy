@@ -11,6 +11,7 @@ use ShadeLife\BlueFort;
 $player = new Players;
 
 auth::connection();
+auth::veriffLoginUsers();
 auth::AuthGendarmerie();
 
 

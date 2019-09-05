@@ -5,13 +5,7 @@ use ShadeLife\auth;
 session_start();
 
 
-require 'assets/auto/header.php';
-require 'assets/auto/function.php';
-require 'assets/class/bdd.php';
-require 'assets/class/players.php';
-require 'assets/class/impot.php';
-require 'assets/class/ident.php';
-require 'assets/class/auth.php';
+require 'autoload.php';
 
 auth::connection();
 

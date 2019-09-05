@@ -16,6 +16,7 @@ session_start();
 <?php
 
 auth::connection();
+auth::veriffLoginUsers();
 auth::AuthGendarmerie();
 
 

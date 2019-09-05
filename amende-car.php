@@ -33,6 +33,7 @@ use ShadeLife\Players;
 	<link rel="stylesheet" href="<?= cssuri(); ?>recherche.css">
 <?php
 	auth::connection();
+	auth::veriffLoginUsers();
 	auth::AuthGendarmerie();
 	if(ident::getCoplevel(1))
 	{

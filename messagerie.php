@@ -34,6 +34,7 @@ use ShadeLife\Players;
 <?php
 
 auth::connection();
+auth::veriffLoginUsers();
 
 	if(ident::getCoplevel(1))
 	{

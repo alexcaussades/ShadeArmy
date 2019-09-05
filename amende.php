@@ -13,6 +13,7 @@ use ShadeLife\BlueFort;
 
 
 auth::connection();
+auth::veriffLoginUsers();
 auth::AuthGendarmerie();
 
 	if(ident::getCoplevel(1))

@@ -24,9 +24,14 @@ class ident
 	{
 		$this->newpass = $this->generateRandomString();
 		$this->nav = $this->getCoplevel(1);
+		$this->token = $this->setToken();
 		
 	}
 	
+	public static function infotoken()
+	{
+		return auth::generateToken();
+	}
 	
 	public function generateRandomString($length = 25) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*';
@@ -64,14 +69,18 @@ class ident
 			}
 			else
 			{
+				$token = auth::generateToken();
 				global $bdd;
-				$q = $bdd->prepare("UPDATE auth SET lastseen = NOW() WHERE login = :login");
+				$q = $bdd->prepare("UPDATE auth SET lastseen = NOW(), token = :token  WHERE login = :login");
 				$q->bindValue(":login", $loginusers);
+				$q->bindValue(":token", $token);
 				$q->execute();
 				session_start();
 				$_SESSION['name'] = $logged['login'];
 				$_SESSION['pid'] = $logged['pid'];
 				$_SESSION['id'] = $logged['id'];
+				$_SESSION['token'] = $token;
+
 				global $bdd;
 				$q = $bdd->prepare("SELECT * FROM players WHERE pid = :pid");
 				$q->execute(array(':pid' => $_SESSION['pid']));
@@ -214,8 +223,7 @@ class ident
 	{
 		$token = random_bytes(32);
 		$token = bin2hex($token);
-		echo $token;
-		setcookie( "TestCookie", $token, strtotime( '+5 minute' ) );
+		return $token;
 	}
 
 	
